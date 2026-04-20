@@ -1,0 +1,111 @@
+{
+  "author": {
+    "email": "tony.quetano@planttheidea.com",
+    "name": "Tony Quetano",
+    "url": "https://www.planttheidea.com/"
+  },
+  "browser": "./dist/umd/index.js",
+  "bugs": {
+    "url": "https://github.com/planttheidea/fast-copy/issues"
+  },
+  "contributors": [
+    "Dariusz Rzepka <rzepkadarek@gmail.com>"
+  ],
+  "description": "A blazing fast deep object copier",
+  "devDependencies": {
+    "@planttheidea/build-tools": "^2.0.8",
+    "@types/lodash": "^4.17.25",
+    "@types/node": "^24.13.3",
+    "@types/ramda": "^0.32.0",
+    "@types/react": "^19.2.18",
+    "@vitest/coverage-v8": "^4.1.11",
+    "cli-table3": "^0.6.5",
+    "clone": "^2.1.2",
+    "deepclone": "^1.0.2",
+    "eslint": "^9.39.5",
+    "fast-clone": "^1.5.13",
+    "lodash": "^4.18.1",
+    "prettier": "^3.9.6",
+    "ramda": "^0.32.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "release-it": "^21.0.2",
+    "rollup": "^4.63.1",
+    "tinybench": "^6.1.4",
+    "typescript": "^6.0.3",
+    "vite": "^8.2.2",
+    "vitest": "^4.1.11"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/es/index.d.mts",
+        "default": "./dist/es/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      },
+      "default": {
+        "types": "./dist/umd/index.d.ts",
+        "default": "./dist/umd/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "index.d.ts",
+    "package.json"
+  ],
+  "homepage": "https://github.com/planttheidea/fast-copy#readme",
+  "keywords": [
+    "clone",
+    "deep",
+    "copy",
+    "fast"
+  ],
+  "license": "MIT",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/es/index.mjs",
+  "name": "fast-copy",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/planttheidea/fast-copy.git"
+  },
+  "scripts": {
+    "benchmark": "npm run build && node benchmark/index.js",
+    "build": "npm run clean && npm run build:dist",
+    "build:dist": "NODE_ENV=production rollup -c config/rollup.config.js",
+    "build:types": "pti fix-types -l dist",
+    "clean": "rm -rf dist",
+    "clean:cjs": "rm -rf dist/cjs",
+    "clean:es": "rm -rf dist/es",
+    "clean:esm": "rm -rf dist/esm",
+    "clean:min": "rm -rf dist/min",
+    "clean:umd": "rm -rf dist/umd",
+    "dev": "vite --config=config/vite.config.ts",
+    "format": "prettier . --log-level=warn --write",
+    "format:check": "prettier . --log-level=warn --check",
+    "lint": "eslint --max-warnings=0",
+    "lint:fix": "npm run lint -- --fix",
+    "release:alpha": "release-it --config=config/release-it/alpha.json",
+    "release:beta": "release-it --config=config/release-it/beta.json",
+    "release:dry": "release-it --dry-run",
+    "release:rc": "release-it --config=config/release-it/rc.json",
+    "release:scripts": "npm run format:check && npm run typecheck && npm run lint && npm run test && npm run build",
+    "release:stable": "release-it --config=config/release-it/stable.json",
+    "start": "npm run dev",
+    "test": "vitest run --config=config/vitest.config.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "types": "./index.d.ts",
+  "version": "4.3.1"
+}
