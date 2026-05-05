@@ -1,0 +1,65 @@
+{
+  "entries": [
+    {
+      "command": "CI=true npm run test:unit -- test/write.test.js",
+      "addedAt": "2026-02-08T20:37:49.619Z",
+      "note": "Always accept"
+    },
+    {
+      "command": "npm run test:unit -- test/write.test.js",
+      "addedAt": "2026-02-08T20:38:54.656Z",
+      "note": "Always accept"
+    },
+    {
+      "command": "npm test",
+      "addedAt": "2026-02-08T21:09:10.658Z",
+      "note": "Always accept"
+    },
+    {
+      "command": "gpg --list-secret-keys --keyid-format=long",
+      "addedAt": "2026-02-08T21:16:37.416Z",
+      "note": "Always accept"
+    },
+    {
+      "command": "gh pr checks 238",
+      "addedAt": "2026-02-08T21:31:51.578Z",
+      "note": "Always accept"
+    },
+    {
+      "command": "gh pr list --state open --limit 100 --json number,title,author,headRefName,isDraft,url",
+      "addedAt": "2026-02-10T13:56:35.227Z",
+      "note": "Always accept"
+    },
+    {
+      "command": "for pr in $(gh pr list --state open --limit 100 --json number -q '.[].number'); do echo \"PR #$pr\"; gh pr checks $pr || true; echo; done",
+      "addedAt": "2026-02-10T13:57:06.066Z",
+      "note": "Always accept"
+    },
+    {
+      "command": "gh pr checks 234 --json name,bucket,state,link | jq -r '.[] | \"\\(.bucket)\\t\\(.name)\\t\\(.state)\\t\\(.link)\"'",
+      "addedAt": "2026-02-10T14:12:19.902Z",
+      "note": "Always accept"
+    },
+    {
+      "command": "gh pr checks 192 --json name,bucket,state,link | jq -r '.[] | \"\\(.bucket)\\t\\(.name)\\t\\(.state)\\t\\(.link)\"'",
+      "addedAt": "2026-02-10T14:12:23.786Z",
+      "note": "Always accept"
+    },
+    {
+      "command": "gh pr list --state merged --limit 10 --json number,title,author,mergedAt,mergeCommit,url",
+      "addedAt": "2026-02-10T14:12:37.765Z",
+      "note": "Always accept"
+    },
+    {
+      "command": "gh pr checks 234 --json name,bucket,state,workflow,link | jq -r '.[] | \"\\(.bucket)\\t\\(.name)\\t\\(.state)\\t\\(.link)\"'",
+      "addedAt": "2026-02-10T14:14:42.491Z",
+      "note": "Always accept"
+    },
+    {
+      "command": "gh pr checks 192 --json name,bucket,state,workflow,link | jq -r '.[] | \"\\(.bucket)\\t\\(.name)\\t\\(.state)\\t\\(.link)\"'",
+      "addedAt": "2026-02-10T14:14:45.171Z",
+      "note": "Always accept"
+    }
+  ],
+  "version": 1
+}
