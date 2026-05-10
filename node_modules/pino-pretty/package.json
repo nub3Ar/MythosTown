@@ -1,0 +1,64 @@
+{
+  "name": "pino-pretty",
+  "version": "13.2.0",
+  "description": "Prettifier for Pino log lines",
+  "type": "commonjs",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "bin": {
+    "pino-pretty": "./bin.js"
+  },
+  "scripts": {
+    "ci": "eslint && borp --check-coverage && npm run test:types",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "test": "borp",
+    "test:types": "tstyche && attw --pack .",
+    "test:watch": "borp -w --reporter gh",
+    "test:report": "c8 --reporter html borp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pinojs/pino-pretty.git"
+  },
+  "keywords": [
+    "pino"
+  ],
+  "author": "James Sumners <james.sumners@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pinojs/pino-pretty/issues"
+  },
+  "homepage": "https://github.com/pinojs/pino-pretty#readme",
+  "dependencies": {
+    "colorette": "^2.0.7",
+    "dateformat": "^4.6.3",
+    "fast-copy": "^4.0.0",
+    "fast-safe-stringify": "^2.1.1",
+    "help-me": "^5.0.0",
+    "joycon": "^3.1.1",
+    "minimist": "^1.2.6",
+    "on-exit-leak-free": "^2.1.2",
+    "pino-abstract-transport": "^3.0.0",
+    "pump": "^3.0.3",
+    "secure-json-parse": "^4.1.0",
+    "sonic-boom": "^5.0.0",
+    "strip-json-comments": "^5.0.3"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.1",
+    "@jsumners/assert-match": "^1.0.0",
+    "@jsumners/line-reporter": "^1.0.1",
+    "@types/node": "^26.0.1",
+    "borp": "^1.0.0",
+    "eslint": "^9.39.1",
+    "fastbench": "^1.0.1",
+    "fastify-tsconfig": "^3.0.0",
+    "neostandard": "^0.13.0",
+    "pino": "^10.1.0",
+    "rimraf": "^6.1.2",
+    "semver": "^7.6.0",
+    "tstyche": "^7.1.0",
+    "typescript": "^6.0.2"
+  }
+}
