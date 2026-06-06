@@ -1,0 +1,1 @@
+{"version":3,"file":"ProxyTracer.d.mts","names":[],"sources":["../../src/trace/ProxyTracer.d.ts"],"mappings":";;;;;;;;;;;cAUqB,uBAAuB;UAChC;UACA;WACC;WACA;;WAEA,UAAU;EACnB,YAAY,UAAU,iBAAiB,cAAc,kBAAkB,UAAU;EACjF,UAAU,cAAc,UAAU,aAAa,UAAU,UAAU;EACnE,gBAAgB,WAAW,MAAM,kBAAkB,eAAe,UAAU,IAAI,aAAa,WAAW,IAAI,SAAS,MAAM,IAAI,WAAW;;;;;UAKlI;;;;;UAKK;EACb,kBAAkB,cAAc,kBAAkB,UAAU,gBAAgB"}
