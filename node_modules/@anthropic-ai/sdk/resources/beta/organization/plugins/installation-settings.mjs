@@ -1,0 +1,165 @@
+import { APIResource } from "../../../../core/resource.mjs";
+import { PageCursor } from "../../../../core/pagination.mjs";
+import { buildHeaders } from "../../../../internal/headers.mjs";
+import { startApiCallSpan } from "../../../../internal/tracing.mjs";
+import { path } from "../../../../internal/utils/path.mjs";
+export class InstallationSettings extends APIResource {
+    /**
+     * List an organization-owned Plugin's installation settings, which say which
+     * members it is for, most recently created first.
+     *
+     * The list holds the Plugin's own organization-wide setting (absent while the
+     * Plugin inherits its marketplace's default) and each RBAC Group's own setting. A
+     * member-owned Plugin has shares instead, so this path returns 404 for one.
+     *
+     * **Accepted credentials:** an Admin API key with the `read:plugins` or
+     * `read:org_audit` scope, or a Compliance Access Key with the
+     * `read:compliance_org_data` scope.
+     *
+     * Every request must include the beta header
+     * `anthropic-beta: ce-plugins-2026-09-01`. A request without it returns `404`,
+     * exactly as if the endpoint did not exist. The Plugins API is in beta and is
+     * available to Claude Enterprise organizations only. It is not available to Claude
+     * Platform (Claude Console) organizations, or to organizations with HIPAA
+     * readiness enabled.
+     *
+     * @example
+     * ```ts
+     * // Automatically fetches more pages as needed.
+     * for await (const betaPluginInstallationSetting of client.beta.organization.plugins.installationSettings.list(
+     *   'plugin_id',
+     * )) {
+     *   // ...
+     * }
+     * ```
+     */
+    list(pluginID, params = {}, options) {
+        const { betas, ...query } = params ?? {};
+        return this._client.getAPIList(path `/v1/organizations/plugins/${pluginID}/installation_settings`, (PageCursor), {
+            query,
+            ...options,
+            headers: buildHeaders([
+                { 'anthropic-beta': [...(betas ?? []), 'ce-plugins-2026-09-01'].toString() },
+                options?.headers,
+            ]),
+            __qualifiers: { beta: 'true' },
+            __span: startApiCallSpan(this._client, 'anthropic.organization.plugins.installation_settings.list', options, {
+                route: '/v1/organizations/plugins/{plugin_id}/installation_settings',
+                queryParams: ['limit', 'organization_id', 'page', 'target_type'],
+                attributes: { 'anthropic.organization.plugin.id': pluginID },
+            }),
+        });
+    }
+    /**
+     * Remove an organization-owned Plugin's own installation setting for the whole
+     * organization or for one RBAC Group.
+     *
+     * Removing the `organization` target returns the Plugin to its marketplace's
+     * default installation setting and leaves the groups' settings in place. Removing
+     * a group's setting makes the group's members fall back to the Plugin's
+     * organization-wide setting or to the settings of their other groups.
+     *
+     * A target that holds no setting of its own returns 404 (a Plugin that already
+     * inherits its marketplace's default holds no `organization` setting), and so does
+     * a member-owned Plugin.
+     *
+     * A removal counts as one of the Plugin's installation-setting writes: send all of
+     * those writes one at a time. If several arrive for the same Plugin at the same
+     * time, the server handles them one after another and can answer some of them with
+     * `503` and `x-should-retry: true` instead of applying them; wait a second or two
+     * and send the removal again. A `404` on the repeat means the setting is already
+     * gone.
+     *
+     * **Accepted credentials:** an Admin API key with the `write:plugins` scope.
+     *
+     * Every request must include the beta header
+     * `anthropic-beta: ce-plugins-2026-09-01`. A request without it returns `404`,
+     * exactly as if the endpoint did not exist. The Plugins API is in beta and is
+     * available to Claude Enterprise organizations only. It is not available to Claude
+     * Platform (Claude Console) organizations, or to organizations with HIPAA
+     * readiness enabled.
+     *
+     * @example
+     * ```ts
+     * const betaDeletedPluginInstallationSetting =
+     *   await client.beta.organization.plugins.installationSettings.remove(
+     *     'target',
+     *     { plugin_id: 'plugin_id' },
+     *   );
+     * ```
+     */
+    remove(target, params, options) {
+        const { plugin_id, betas } = params;
+        return this._client.delete(path `/v1/organizations/plugins/${plugin_id}/installation_settings/${target}`, {
+            ...options,
+            headers: buildHeaders([
+                { 'anthropic-beta': [...(betas ?? []), 'ce-plugins-2026-09-01'].toString() },
+                options?.headers,
+            ]),
+            __qualifiers: { beta: 'true' },
+            __span: startApiCallSpan(this._client, 'anthropic.organization.plugins.installation_settings.remove', options, {
+                route: '/v1/organizations/plugins/{plugin_id}/installation_settings/{target}',
+                attributes: {
+                    'anthropic.organization.plugin.id': plugin_id,
+                    'anthropic.organization.plugin.installation_setting.id': target,
+                },
+            }),
+        });
+    }
+    /**
+     * Set or change an organization-owned Plugin's installation setting for the whole
+     * organization or for one RBAC Group.
+     *
+     * Writing the value a target already holds of its own changes nothing.
+     *
+     * A member-owned Plugin has shares instead of installation settings, so this path
+     * returns 404 for one.
+     *
+     * Send a Plugin's installation-setting writes one at a time. If several writes for
+     * the same Plugin arrive at the same time, the server handles them one after
+     * another and can answer some of them with `503` instead of applying them. That
+     * `503` carries `x-should-retry: true`, and the write is safe to repeat: wait a
+     * second or two, then send it again.
+     *
+     * **Accepted credentials:** an Admin API key with the `write:plugins` scope.
+     *
+     * Every request must include the beta header
+     * `anthropic-beta: ce-plugins-2026-09-01`. A request without it returns `404`,
+     * exactly as if the endpoint did not exist. The Plugins API is in beta and is
+     * available to Claude Enterprise organizations only. It is not available to Claude
+     * Platform (Claude Console) organizations, or to organizations with HIPAA
+     * readiness enabled.
+     *
+     * @example
+     * ```ts
+     * const betaPluginInstallationSetting =
+     *   await client.beta.organization.plugins.installationSettings.set(
+     *     'target',
+     *     {
+     *       plugin_id: 'plugin_id',
+     *       installation_preference: 'required',
+     *     },
+     *   );
+     * ```
+     */
+    set(target, params, options) {
+        const { plugin_id, betas, ...body } = params;
+        return this._client.post(path `/v1/organizations/plugins/${plugin_id}/installation_settings/${target}`, {
+            body,
+            ...options,
+            headers: buildHeaders([
+                { 'anthropic-beta': [...(betas ?? []), 'ce-plugins-2026-09-01'].toString() },
+                options?.headers,
+            ]),
+            __qualifiers: { beta: 'true' },
+            __span: startApiCallSpan(this._client, 'anthropic.organization.plugins.installation_settings.set', options, {
+                route: '/v1/organizations/plugins/{plugin_id}/installation_settings/{target}',
+                attributes: {
+                    'anthropic.organization.plugin.id': plugin_id,
+                    'anthropic.organization.plugin.installation_setting.id': target,
+                },
+            }),
+        });
+    }
+}
+//# sourceMappingURL=installation-settings.mjs.map
