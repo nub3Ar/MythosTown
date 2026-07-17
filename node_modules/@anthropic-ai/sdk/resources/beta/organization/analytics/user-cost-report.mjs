@@ -1,0 +1,64 @@
+import { APIResource } from "../../../../core/resource.mjs";
+import { ReportPageCursor } from "../../../../core/pagination.mjs";
+import { startApiCallSpan } from "../../../../internal/tracing.mjs";
+export class UserCostReport extends APIResource {
+    /**
+     * [Legacy] Get per-user cost in USD across a date range.
+     *
+     * Returns cost per user, ranked by spend; `group_by[]` or `bucket_width` splits a
+     * user across several rows. Use this to see which users account for the most cost.
+     * Only cost attributed to a user account is included; cost with no user attributed
+     * to it, such as Code Review usage and Claude Tag usage in Slack channels, is left
+     * out. Available to organizations on a Claude Enterprise plan. Requires an API key
+     * with the `read:analytics` scope.
+     *
+     * This endpoint is one of the legacy Claude Enterprise usage and cost reports. For
+     * new integrations, use
+     * [`GET /v1/organizations/analytics/cost`](/docs/en/api/beta/organization/analytics/cost/list)
+     * in the Usage and Cost Analytics API instead. To move an existing integration,
+     * see
+     * [Migrate from the Claude Enterprise usage and cost reports](/docs/en/manage-claude/usage-cost-analytics-api#migrate-from-enterprise-analytics-reports).
+     *
+     * @example
+     * ```ts
+     * // Automatically fetches more pages as needed.
+     * for await (const betaAnalyticsCostUsersItem of client.beta.organization.analytics.userCostReport.list(
+     *   { starting_at: '2019-12-27T18:11:19.117Z' },
+     * )) {
+     *   // ...
+     * }
+     * ```
+     */
+    list(query, options) {
+        return this._client.getAPIList('/v1/organizations/analytics/user_cost_report', (ReportPageCursor), {
+            query,
+            ...options,
+            __qualifiers: { beta: 'true' },
+            __span: startApiCallSpan(this._client, 'anthropic.organization.analytics.user_cost_report.list', options, {
+                route: '/v1/organizations/analytics/user_cost_report',
+                queryParams: [
+                    'bucket_width',
+                    'claude_tag_categories',
+                    'claude_tag_user_ids',
+                    'context_windows',
+                    'ending_at',
+                    'exclude_deleted_users',
+                    'group_by',
+                    'inference_geos',
+                    'limit',
+                    'models',
+                    'order',
+                    'order_by',
+                    'page',
+                    'products',
+                    'rbac_group_ids',
+                    'slack_channel_ids',
+                    'speeds',
+                    'starting_at',
+                    'user_ids',
+                ],
+            }),
+        });
+    }
+}
+//# sourceMappingURL=user-cost-report.mjs.map
