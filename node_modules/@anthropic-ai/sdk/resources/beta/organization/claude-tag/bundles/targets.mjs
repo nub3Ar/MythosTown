@@ -1,0 +1,139 @@
+import { APIResource } from "../../../../../core/resource.mjs";
+import { PageCursor } from "../../../../../core/pagination.mjs";
+import { buildHeaders } from "../../../../../internal/headers.mjs";
+import { startApiCallSpan } from "../../../../../internal/tracing.mjs";
+import { path } from "../../../../../internal/utils/path.mjs";
+export class Targets extends APIResource {
+    /**
+     * Attach a Bundle to a Slack channel or a Slack workspace. A Bundle attached to a
+     * workspace can be used in the workspace and in every channel in it. Attaching a
+     * Bundle to a channel or workspace it is already attached to returns the existing
+     * Bundle Target. The channel or workspace must be set up: attaching never sets a
+     * channel up. A group direct message takes no Bundle and returns 400.
+     *
+     * @example
+     * ```ts
+     * const betaClaudeTagBundleTarget =
+     *   await client.beta.organization.claudeTag.bundles.targets.create(
+     *     'capp_011CZkZjLP1cWxj5EtMmdgbq',
+     *     {
+     *       target: {
+     *         slack_channel_id: 'xxxxxxxx',
+     *         type: 'slack_channel',
+     *       },
+     *     },
+     *   );
+     * ```
+     */
+    create(bundleID, params, options) {
+        const { target, betas } = params;
+        return this._client.post(path `/v1/organizations/claude_tag/bundles/${bundleID}/targets`, {
+            body: target,
+            ...options,
+            headers: buildHeaders([
+                { 'anthropic-beta': [...(betas ?? []), 'experimental-claude-tag-2026-10-21'].toString() },
+                options?.headers,
+            ]),
+            __qualifiers: { beta: 'true' },
+            __span: startApiCallSpan(this._client, 'anthropic.organization.claude_tag.bundles.targets.create', options, {
+                route: '/v1/organizations/claude_tag/bundles/{bundle_id}/targets',
+                attributes: { 'anthropic.organization.claude_tag.bundle.id': bundleID },
+            }),
+        });
+    }
+    /**
+     * Get one Bundle Target. Returns 404 when `target_id` is the identifier of another
+     * Bundle's Bundle Target, or the Bundle Target was detached.
+     *
+     * @example
+     * ```ts
+     * const betaClaudeTagBundleTarget =
+     *   await client.beta.organization.claudeTag.bundles.targets.retrieve(
+     *     'btgt_01SvpyRQK3nN6eH9uhRA7n1qHq8TzW5mKc2YbX7vNd4RfJ',
+     *     { bundle_id: 'capp_011CZkZjLP1cWxj5EtMmdgbq' },
+     *   );
+     * ```
+     */
+    retrieve(targetID, params, options) {
+        const { bundle_id, betas } = params;
+        return this._client.get(path `/v1/organizations/claude_tag/bundles/${bundle_id}/targets/${targetID}`, {
+            ...options,
+            headers: buildHeaders([
+                { 'anthropic-beta': [...(betas ?? []), 'experimental-claude-tag-2026-10-21'].toString() },
+                options?.headers,
+            ]),
+            __qualifiers: { beta: 'true' },
+            __span: startApiCallSpan(this._client, 'anthropic.organization.claude_tag.bundles.targets.retrieve', options, {
+                route: '/v1/organizations/claude_tag/bundles/{bundle_id}/targets/{target_id}',
+                attributes: {
+                    'anthropic.organization.claude_tag.bundle.id': bundle_id,
+                    'anthropic.organization.claude_tag.bundle.target.id': targetID,
+                },
+            }),
+        });
+    }
+    /**
+     * List the Slack channels and Slack workspaces a Bundle is attached to, newest
+     * first by `created_at`. Only channels and workspaces the organization owns are
+     * listed; a Bundle that is attached to anything else has no Bundle Target for it.
+     *
+     * @example
+     * ```ts
+     * // Automatically fetches more pages as needed.
+     * for await (const betaClaudeTagBundleTarget of client.beta.organization.claudeTag.bundles.targets.list(
+     *   'capp_011CZkZjLP1cWxj5EtMmdgbq',
+     * )) {
+     *   // ...
+     * }
+     * ```
+     */
+    list(bundleID, params = {}, options) {
+        const { betas, ...query } = params ?? {};
+        return this._client.getAPIList(path `/v1/organizations/claude_tag/bundles/${bundleID}/targets`, (PageCursor), {
+            query,
+            ...options,
+            headers: buildHeaders([
+                { 'anthropic-beta': [...(betas ?? []), 'experimental-claude-tag-2026-10-21'].toString() },
+                options?.headers,
+            ]),
+            __qualifiers: { beta: 'true' },
+            __span: startApiCallSpan(this._client, 'anthropic.organization.claude_tag.bundles.targets.list', options, {
+                route: '/v1/organizations/claude_tag/bundles/{bundle_id}/targets',
+                queryParams: ['limit', 'page'],
+                attributes: { 'anthropic.organization.claude_tag.bundle.id': bundleID },
+            }),
+        });
+    }
+    /**
+     * Detach a Bundle from a Slack channel or a Slack workspace. A repeated detach
+     * returns 404.
+     *
+     * @example
+     * ```ts
+     * const betaClaudeTagDeletedBundleTarget =
+     *   await client.beta.organization.claudeTag.bundles.targets.delete(
+     *     'btgt_01SvpyRQK3nN6eH9uhRA7n1qHq8TzW5mKc2YbX7vNd4RfJ',
+     *     { bundle_id: 'capp_011CZkZjLP1cWxj5EtMmdgbq' },
+     *   );
+     * ```
+     */
+    delete(targetID, params, options) {
+        const { bundle_id, betas } = params;
+        return this._client.delete(path `/v1/organizations/claude_tag/bundles/${bundle_id}/targets/${targetID}`, {
+            ...options,
+            headers: buildHeaders([
+                { 'anthropic-beta': [...(betas ?? []), 'experimental-claude-tag-2026-10-21'].toString() },
+                options?.headers,
+            ]),
+            __qualifiers: { beta: 'true' },
+            __span: startApiCallSpan(this._client, 'anthropic.organization.claude_tag.bundles.targets.delete', options, {
+                route: '/v1/organizations/claude_tag/bundles/{bundle_id}/targets/{target_id}',
+                attributes: {
+                    'anthropic.organization.claude_tag.bundle.id': bundle_id,
+                    'anthropic.organization.claude_tag.bundle.target.id': targetID,
+                },
+            }),
+        });
+    }
+}
+//# sourceMappingURL=targets.mjs.map
