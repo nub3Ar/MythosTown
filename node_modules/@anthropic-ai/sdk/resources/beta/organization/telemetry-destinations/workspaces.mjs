@@ -1,0 +1,128 @@
+import { APIResource } from "../../../../core/resource.mjs";
+import { PageCursor } from "../../../../core/pagination.mjs";
+import { buildHeaders } from "../../../../internal/headers.mjs";
+import { startApiCallSpan } from "../../../../internal/tracing.mjs";
+import { path } from "../../../../internal/utils/path.mjs";
+export class Workspaces extends APIResource {
+    /**
+     * List the workspaces on a destination's workspace list, newest entry first.
+     *
+     * A destination whose `workspaces.type` is `all` doesn't have a list, so its page
+     * is empty. The list includes archived workspaces.
+     *
+     * See the
+     * [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-claude/opentelemetry#choose-workspaces-for-a-destination)
+     * to learn more about choosing the workspaces of a destination.
+     *
+     * @example
+     * ```ts
+     * // Automatically fetches more pages as needed.
+     * for await (const betaTelemetryDestinationWorkspace of client.beta.organization.telemetryDestinations.workspaces.list(
+     *   'destination_id',
+     * )) {
+     *   // ...
+     * }
+     * ```
+     */
+    list(destinationID, params = {}, options) {
+        const { betas, ...query } = params ?? {};
+        return this._client.getAPIList(path `/v1/organizations/telemetry_destinations/${destinationID}/workspaces`, (PageCursor), {
+            query,
+            ...options,
+            headers: buildHeaders([
+                { 'anthropic-beta': [...(betas ?? []), 'telemetry-destinations-2026-08-11'].toString() },
+                options?.headers,
+            ]),
+            __qualifiers: { beta: 'true' },
+            __span: startApiCallSpan(this._client, 'anthropic.organization.telemetry_destinations.workspaces.list', options, {
+                route: '/v1/organizations/telemetry_destinations/{destination_id}/workspaces',
+                queryParams: ['limit', 'page'],
+                attributes: { 'anthropic.organization.telemetry_destination.id': destinationID },
+            }),
+        });
+    }
+    /**
+     * Add one workspace to a destination's workspace list.
+     *
+     * Under `include` the workspace's spans start going to the destination. Under
+     * `exclude` they stop. A list holds at most 1,000 workspaces.
+     *
+     * Adding a workspace that is already on the list changes nothing and returns the
+     * existing entry. An archived workspace that isn't on the list yet can't be added.
+     * A destination whose `workspaces.type` is `all` doesn't have a list, so the API
+     * returns 400. To change which workspaces such a destination covers, update its
+     * `workspaces`.
+     *
+     * See the
+     * [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-claude/opentelemetry#choose-workspaces-for-a-destination)
+     * to learn more about choosing the workspaces of a destination.
+     *
+     * @example
+     * ```ts
+     * const betaTelemetryDestinationWorkspace =
+     *   await client.beta.organization.telemetryDestinations.workspaces.add(
+     *     'workspace_id',
+     *     { destination_id: 'destination_id' },
+     *   );
+     * ```
+     */
+    add(workspaceID, params, options) {
+        const { destination_id, betas } = params;
+        return this._client.post(path `/v1/organizations/telemetry_destinations/${destination_id}/workspaces/${workspaceID}`, {
+            ...options,
+            headers: buildHeaders([
+                { 'anthropic-beta': [...(betas ?? []), 'telemetry-destinations-2026-08-11'].toString() },
+                options?.headers,
+            ]),
+            __qualifiers: { beta: 'true' },
+            __span: startApiCallSpan(this._client, 'anthropic.organization.telemetry_destinations.workspaces.add', options, {
+                route: '/v1/organizations/telemetry_destinations/{destination_id}/workspaces/{workspace_id}',
+                attributes: {
+                    'anthropic.organization.telemetry_destination.id': destination_id,
+                    'anthropic.organization.telemetry_destination.workspace.id': workspaceID,
+                },
+            }),
+        });
+    }
+    /**
+     * Remove one workspace from a destination's workspace list.
+     *
+     * Under `include` the workspace's spans stop going to the destination. Under
+     * `exclude` they start. An archived workspace can be removed too.
+     *
+     * The API returns 404 when the workspace isn't on the list. A destination whose
+     * `workspaces.type` is `all` doesn't have a list, so the API returns 400.
+     *
+     * See the
+     * [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-claude/opentelemetry#choose-workspaces-for-a-destination)
+     * to learn more about choosing the workspaces of a destination.
+     *
+     * @example
+     * ```ts
+     * const betaDeletedTelemetryDestinationWorkspace =
+     *   await client.beta.organization.telemetryDestinations.workspaces.remove(
+     *     'workspace_id',
+     *     { destination_id: 'destination_id' },
+     *   );
+     * ```
+     */
+    remove(workspaceID, params, options) {
+        const { destination_id, betas } = params;
+        return this._client.delete(path `/v1/organizations/telemetry_destinations/${destination_id}/workspaces/${workspaceID}`, {
+            ...options,
+            headers: buildHeaders([
+                { 'anthropic-beta': [...(betas ?? []), 'telemetry-destinations-2026-08-11'].toString() },
+                options?.headers,
+            ]),
+            __qualifiers: { beta: 'true' },
+            __span: startApiCallSpan(this._client, 'anthropic.organization.telemetry_destinations.workspaces.remove', options, {
+                route: '/v1/organizations/telemetry_destinations/{destination_id}/workspaces/{workspace_id}',
+                attributes: {
+                    'anthropic.organization.telemetry_destination.id': destination_id,
+                    'anthropic.organization.telemetry_destination.workspace.id': workspaceID,
+                },
+            }),
+        });
+    }
+}
+//# sourceMappingURL=workspaces.mjs.map
