@@ -1,0 +1,101 @@
+import { APIResource } from "../../../../core/resource.js";
+import * as BetaAPI from "../../beta.js";
+import * as EventsAPI from "../events.js";
+import { BetaManagedAgentsSessionEventsPageCursor } from "../events.js";
+import * as SessionsAPI from "../sessions.js";
+import * as ThreadsAPI from "./threads.js";
+import { APIPromise } from "../../../../core/api-promise.js";
+import { type PageCursorParams, PagePromise } from "../../../../core/pagination.js";
+import { Stream } from "../../../../core/streaming.js";
+import { RequestOptions } from "../../../../internal/request-options.js";
+export declare class Events extends APIResource {
+    /**
+     * List Session Thread Events
+     *
+     * @example
+     * ```ts
+     * // Automatically fetches more pages as needed.
+     * for await (const betaManagedAgentsSessionEvent of client.beta.sessions.threads.events.list(
+     *   'sthr_011CZkZVWa6oJjw1rgXZpnBt',
+     *   { session_id: 'sesn_011CZkZAtmR3yMPDzynEDxu7' },
+     * )) {
+     *   // ...
+     * }
+     * ```
+     */
+    list(threadID: string, params: EventListParams, options?: RequestOptions): PagePromise<BetaManagedAgentsSessionEventsPageCursor, EventsAPI.BetaManagedAgentsSessionEvent>;
+    /**
+     * Stream Session Thread Events
+     *
+     * @example
+     * ```ts
+     * const stream =
+     *   await client.beta.sessions.threads.events.stream(
+     *     'sthr_011CZkZVWa6oJjw1rgXZpnBt',
+     *     { session_id: 'sesn_011CZkZAtmR3yMPDzynEDxu7' },
+     *   );
+     * for await (const betaManagedAgentsStreamSessionThreadEvents of stream) {
+     *   // ...
+     * }
+     * ```
+     */
+    stream(threadID: string, params: EventStreamParams, options?: RequestOptions): APIPromise<Stream<ThreadsAPI.BetaManagedAgentsStreamSessionThreadEvents>>;
+}
+export interface EventListParams extends PageCursorParams {
+    /**
+     * Path param
+     */
+    session_id: string;
+    /**
+     * Header param: This endpoint is in beta: requests must send
+     * `managed-agents-2026-04-01` in this header.
+     */
+    betas?: Array<BetaAPI.AnthropicBeta>;
+    /**
+     * Header param: Optional header to select the Workspace for this request. The
+     * value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+     *
+     * Only needed for credentials that can act on more than one Workspace. A
+     * credential that belongs to a specific Workspace may omit it; if sent, it must
+     * match that Workspace.
+     */
+    workspace_id?: string;
+}
+export interface EventStreamParams {
+    /**
+     * Path param
+     */
+    session_id: string;
+    /**
+     * Query param: When set, this connection also receives streaming deltas
+     * (`event_start`, `event_delta`) while an event is being produced, before the
+     * event itself arrives. Deltas are best-effort; when the final event is produced
+     * it carries the complete content. A model request that ends early (an error or
+     * interrupt) produces no final event — its terminal `span.model_request_end`
+     * closes the preview. Accepts one or more event types to preview and may be
+     * repeated: `agent.message` streams `content_delta` fragments; `agent.thinking` is
+     * start-only — a signal that the agent has begun extended thinking, concluded by
+     * the `agent.thinking` event itself. Only previews of the requested event types
+     * are sent.
+     */
+    event_deltas?: Array<SessionsAPI.BetaManagedAgentsDeltaType>;
+    /**
+     * Header param: This endpoint is in beta: requests must send
+     * `managed-agents-2026-04-01` in this header.
+     */
+    betas?: Array<BetaAPI.AnthropicBeta>;
+    /**
+     * Header param: Optional header to select the Workspace for this request. The
+     * value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+     *
+     * Only needed for credentials that can act on more than one Workspace. A
+     * credential that belongs to a specific Workspace may omit it; if sent, it must
+     * match that Workspace.
+     */
+    workspace_id?: string;
+}
+export declare namespace Events {
+    export { type EventListParams as EventListParams, type EventStreamParams as EventStreamParams };
+}
+export { type BetaManagedAgentsSessionEventsPageCursor };
+//# sourceMappingURL=events.d.ts.map
