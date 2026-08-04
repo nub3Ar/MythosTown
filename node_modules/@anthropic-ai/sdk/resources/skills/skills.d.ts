@@ -1,0 +1,194 @@
+import { APIResource } from "../../core/resource.js";
+import * as VersionsAPI from "./versions.js";
+import { DeletedSkillVersion, SkillVersion, SkillVersionsPageCursor, VersionCreateParams, VersionDeleteParams, VersionListParams, VersionRetrieveParams, Versions } from "./versions.js";
+import { APIPromise } from "../../core/api-promise.js";
+import { PageCursor, type PageCursorParams, PagePromise } from "../../core/pagination.js";
+import { type Uploadable } from "../../core/uploads.js";
+import { RequestOptions } from "../../internal/request-options.js";
+export declare class Skills extends APIResource {
+    versions: VersionsAPI.Versions;
+    /**
+     * Create Skill
+     *
+     * @example
+     * ```ts
+     * const skill = await client.skills.create({
+     *   files: [fs.createReadStream('path/to/file')],
+     * });
+     * ```
+     */
+    create(params: SkillCreateParams, options?: RequestOptions): APIPromise<Skill>;
+    /**
+     * Get Skill
+     *
+     * @example
+     * ```ts
+     * const skill = await client.skills.retrieve('skill_id');
+     * ```
+     */
+    retrieve(skillID: string, params?: SkillRetrieveParams | null | undefined, options?: RequestOptions): APIPromise<Skill>;
+    /**
+     * List Skills
+     *
+     * @example
+     * ```ts
+     * // Automatically fetches more pages as needed.
+     * for await (const skill of client.skills.list()) {
+     *   // ...
+     * }
+     * ```
+     */
+    list(params?: SkillListParams | null | undefined, options?: RequestOptions): PagePromise<SkillsPageCursor, Skill>;
+    /**
+     * Delete Skill
+     *
+     * @example
+     * ```ts
+     * const deletedSkill = await client.skills.delete('skill_id');
+     * ```
+     */
+    delete(skillID: string, params?: SkillDeleteParams | null | undefined, options?: RequestOptions): APIPromise<DeletedSkill>;
+}
+export type SkillsPageCursor = PageCursor<Skill>;
+export interface DeletedSkill {
+    /**
+     * Unique identifier for the skill.
+     *
+     * The format and length of IDs may change over time.
+     */
+    id: string;
+    /**
+     * Deleted object type.
+     *
+     * For Skills, this is always `"skill_deleted"`.
+     */
+    type: 'skill_deleted';
+}
+export interface Skill {
+    /**
+     * Unique identifier for the skill.
+     *
+     * The format and length of IDs may change over time.
+     */
+    id: string;
+    /**
+     * ISO 8601 timestamp of when the skill was created.
+     */
+    created_at: string;
+    /**
+     * Human-readable, single-line label for the Skill. Maximum 255 characters. Always
+     * set: derived from the SKILL.md frontmatter `name` when omitted at creation. Not
+     * unique.
+     */
+    display_name: string;
+    /**
+     * ID of the newest Skill Version — what `latest` references resolve to. Always
+     * set: a Skill holds at least one version.
+     */
+    latest_version_id: string;
+    /**
+     * Where the Skill comes from.
+     *
+     * Possible values:
+     *
+     * - `"custom"`: authored by the platform user; private to their workspace
+     * - `"anthropic"`: published by Anthropic; shared and read-only
+     * - `"anthropic_example"`: Anthropic-published sample Skill
+     * - `"plugin"`: resolved from an installed plugin
+     */
+    source: SkillSource;
+    /**
+     * Object type.
+     *
+     * For Skills, this is always `"skill"`.
+     */
+    type: 'skill';
+    /**
+     * ISO 8601 timestamp of when the skill was last updated.
+     */
+    updated_at: string;
+}
+export interface SkillSource {
+    /**
+     * Where the Skill comes from.
+     *
+     * Possible values:
+     *
+     * - `"custom"`: authored by the platform user; private to their workspace
+     * - `"anthropic"`: published by Anthropic; shared and read-only
+     * - `"anthropic_example"`: Anthropic-published sample Skill
+     * - `"plugin"`: resolved from an installed plugin
+     */
+    type: 'custom' | 'anthropic' | 'anthropic_example' | 'plugin';
+}
+export interface SkillCreateParams {
+    /**
+     * Body param: Files to upload for the skill.
+     *
+     * All files must be in the same top-level directory and must include a SKILL.md
+     * file at the root of that directory.
+     */
+    files: Array<Uploadable>;
+    /**
+     * Body param: Human-readable, single-line label for the Skill. Maximum 255
+     * characters. Always set: derived from the SKILL.md frontmatter `name` when
+     * omitted at creation. Not unique.
+     */
+    display_name?: string | null;
+    /**
+     * Header param: Optional header to select the Workspace for this request. The
+     * value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+     *
+     * Only needed for credentials that can act on more than one Workspace. A
+     * credential that belongs to a specific Workspace may omit it; if sent, it must
+     * match that Workspace.
+     */
+    workspace_id?: string;
+}
+export interface SkillRetrieveParams {
+    /**
+     * Optional header to select the Workspace for this request. The value is a
+     * Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+     *
+     * Only needed for credentials that can act on more than one Workspace. A
+     * credential that belongs to a specific Workspace may omit it; if sent, it must
+     * match that Workspace.
+     */
+    workspace_id?: string;
+}
+export interface SkillListParams extends PageCursorParams {
+    /**
+     * Query param: Filter skills by source.
+     *
+     * If provided, only skills from the specified source will be returned:
+     *
+     * - `"custom"`: only return user-created skills
+     * - `"anthropic"`: only return Anthropic-created skills
+     */
+    source?: string | null;
+    /**
+     * Header param: Optional header to select the Workspace for this request. The
+     * value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+     *
+     * Only needed for credentials that can act on more than one Workspace. A
+     * credential that belongs to a specific Workspace may omit it; if sent, it must
+     * match that Workspace.
+     */
+    workspace_id?: string;
+}
+export interface SkillDeleteParams {
+    /**
+     * Optional header to select the Workspace for this request. The value is a
+     * Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+     *
+     * Only needed for credentials that can act on more than one Workspace. A
+     * credential that belongs to a specific Workspace may omit it; if sent, it must
+     * match that Workspace.
+     */
+    workspace_id?: string;
+}
+export declare namespace Skills {
+    export { type DeletedSkill as DeletedSkill, type Skill as Skill, type SkillSource as SkillSource, type SkillsPageCursor as SkillsPageCursor, type SkillCreateParams as SkillCreateParams, type SkillRetrieveParams as SkillRetrieveParams, type SkillListParams as SkillListParams, type SkillDeleteParams as SkillDeleteParams, };
+    export { Versions as Versions, type DeletedSkillVersion as DeletedSkillVersion, type SkillVersion as SkillVersion, type SkillVersionsPageCursor as SkillVersionsPageCursor, type VersionCreateParams as VersionCreateParams, type VersionRetrieveParams as VersionRetrieveParams, type VersionListParams as VersionListParams, type VersionDeleteParams as VersionDeleteParams, };
+}
+//# sourceMappingURL=skills.d.ts.map
