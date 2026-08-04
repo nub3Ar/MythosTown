@@ -1,0 +1,128 @@
+/**
+ * This module provides internal shims and utility functions for environments where certain Node.js or global types may not be available.
+ *
+ * These are used to ensure we can provide a consistent behaviour between different JavaScript environments and good error
+ * messages in cases where an environment isn't fully supported.
+ */
+
+import type { Fetch } from './builtin-types';
+import type { ReadableStream as ReadableStreamType } from './shim-types';
+
+export function getDefaultFetch(): Fetch {
+  if (typeof fetch !== 'undefined') {
+    return fetch as any;
+  }
+
+  throw new Error(
+    '`fetch` is not defined as a global; Either pass `fetch` to the client, `new Anthropic({ fetch })` or polyfill the global, `globalThis.fetch = fetch`',
+  );
+}
+
+// The runtime's global ReadableStream constructor, not the type imported above as ReadableStreamType.
+type ReadableStreamArgs = ConstructorParameters<typeof ReadableStream>;
+
+export function makeReadableStream(...args: ReadableStreamArgs): ReadableStreamType {
+  const ReadableStream = (globalThis as any).ReadableStream;
+  if (typeof ReadableStream === 'undefined') {
+    // Note: All of the platforms / runtimes we officially support already define
+    // `ReadableStream` as a global, so this should only ever be hit on unsupported runtimes.
+    throw new Error(
+      '`ReadableStream` is not defined as a global; You will need to polyfill it, `globalThis.ReadableStream = ReadableStream`',
+    );
+  }
+
+  return new ReadableStream(...args);
+}
+
+export function ReadableStreamFrom<T>(iterable: Iterable<T> | AsyncIterable<T>): ReadableStreamType<T> {
+  let iter: AsyncIterator<T> | Iterator<T> =
+    Symbol.asyncIterator in iterable ? iterable[Symbol.asyncIterator]() : iterable[Symbol.iterator]();
+
+  return makeReadableStream({
+    start() {},
+    async pull(controller: any) {
+      const { done, value } = await iter.next();
+      if (done) {
+        controller.close();
+      } else {
+        controller.enqueue(value);
+      }
+    },
+    async cancel() {
+      await iter.return?.();
+    },
+  });
+}
+
+/**
+ * Most browsers don't yet have async iterable support for ReadableStream,
+ * and Node has a very different way of reading bytes from its "ReadableStream".
+ *
+ * This polyfill was pulled from https://github.com/MattiasBuelens/web-streams-polyfill/pull/122#issuecomment-1627354490
+ */
+function readableStreamIterator<T>(stream: any): AsyncIterator<T> {
+  if (stream[Symbol.asyncIterator]) return stream[Symbol.asyncIterator]();
+
+  const reader = stream.getReader();
+  return {
+    async next() {
+      try {
+        const result = await reader.read();
+        if (result?.done) reader.releaseLock(); // release lock when stream becomes closed
+        return result;
+      } catch (e) {
+        reader.releaseLock(); // release lock when stream becomes errored
+        throw e;
+      }
+    },
+    async return() {
+      const cancelPromise = reader.cancel();
+      reader.releaseLock();
+      await cancelPromise;
+      return { done: true, value: undefined };
+    },
+  };
+}
+
+// Cancels a stream whose reader was garbage collected before it finished. The reader's lock keeps
+// anything else from reading or cancelling the stream, so it would hold on to its connection.
+const droppedReaders =
+  typeof FinalizationRegistry === 'undefined' ? undefined : (
+    /* @__PURE__ */ new FinalizationRegistry(async (iter: AsyncIterator<unknown>) => {
+      try {
+        await iter.return?.();
+      } catch {
+        // The stream has already failed, e.g. because the request was aborted.
+      }
+    })
+  );
+
+export async function* ReadableStreamToAsyncIterable<T>(stream: any): AsyncIterableIterator<T> {
+  const iter = readableStreamIterator<T>(stream);
+  // Only this generator refers to `reader`, so it's collected once nothing can resume the generator.
+  const reader = {};
+  droppedReaders?.register(reader, iter, reader);
+  try {
+    for await (const chunk of { [Symbol.asyncIterator]: () => iter }) yield chunk;
+  } finally {
+    droppedReaders?.unregister(reader);
+  }
+}
+
+/**
+ * Cancels a ReadableStream we don't need to consume.
+ * See https://undici.nodejs.org/#/?id=garbage-collection
+ */
+export async function CancelReadableStream(stream: any): Promise<void> {
+  if (stream === null || typeof stream !== 'object') return;
+
+  if (stream[Symbol.asyncIterator]) {
+    await stream[Symbol.asyncIterator]().return?.();
+    return;
+  }
+
+  const reader = stream.getReader();
+  const cancelPromise = reader.cancel();
+  reader.releaseLock();
+  await cancelPromise;
+}
