@@ -1,0 +1,268 @@
+import { APIResource } from "../../../../core/resource.js";
+import * as BetaAPI from "../../beta.js";
+import * as AgentsAPI from "../../agents/agents.js";
+import * as EventsAPI from "../events.js";
+import * as SessionsAPI from "../sessions.js";
+import * as ThreadsEventsAPI from "./events.js";
+import { EventListParams, EventStreamParams, Events } from "./events.js";
+import { APIPromise } from "../../../../core/api-promise.js";
+import { PageCursor, type PageCursorParams, PagePromise } from "../../../../core/pagination.js";
+import { RequestOptions } from "../../../../internal/request-options.js";
+export declare class Threads extends APIResource {
+    events: ThreadsEventsAPI.Events;
+    /**
+     * Get Session Thread
+     *
+     * @example
+     * ```ts
+     * const betaManagedAgentsSessionThread =
+     *   await client.beta.sessions.threads.retrieve(
+     *     'sthr_011CZkZVWa6oJjw1rgXZpnBt',
+     *     { session_id: 'sesn_011CZkZAtmR3yMPDzynEDxu7' },
+     *   );
+     * ```
+     */
+    retrieve(threadID: string, params: ThreadRetrieveParams, options?: RequestOptions): APIPromise<BetaManagedAgentsSessionThread>;
+    /**
+     * List Session Threads
+     *
+     * @example
+     * ```ts
+     * // Automatically fetches more pages as needed.
+     * for await (const betaManagedAgentsSessionThread of client.beta.sessions.threads.list(
+     *   'sesn_011CZkZAtmR3yMPDzynEDxu7',
+     * )) {
+     *   // ...
+     * }
+     * ```
+     */
+    list(sessionID: string, params?: ThreadListParams | null | undefined, options?: RequestOptions): PagePromise<BetaManagedAgentsSessionThreadsPageCursor, BetaManagedAgentsSessionThread>;
+    /**
+     * Archive Session Thread
+     *
+     * @example
+     * ```ts
+     * const betaManagedAgentsSessionThread =
+     *   await client.beta.sessions.threads.archive(
+     *     'sthr_011CZkZVWa6oJjw1rgXZpnBt',
+     *     { session_id: 'sesn_011CZkZAtmR3yMPDzynEDxu7' },
+     *   );
+     * ```
+     */
+    archive(threadID: string, params: ThreadArchiveParams, options?: RequestOptions): APIPromise<BetaManagedAgentsSessionThread>;
+}
+export type BetaManagedAgentsSessionThreadsPageCursor = PageCursor<BetaManagedAgentsSessionThread>;
+/**
+ * An agent that has no Agent resource, and so no `id` or `version`. It is defined
+ * inline, in a workflow run's plan or when a session thread is spawned, and is not
+ * saved.
+ */
+export interface BetaManagedAgentsInlineAgent {
+    description: string | null;
+    /**
+     * The session's execution principal.
+     */
+    execution_identity: AgentsAPI.BetaManagedAgentsExecutionIdentity;
+    mcp_servers: Array<AgentsAPI.BetaManagedAgentsMCPServerURLDefinition>;
+    /**
+     * Model identifier and configuration.
+     */
+    model: AgentsAPI.BetaManagedAgentsModelConfig;
+    /**
+     * The name that the agent's definition gave, or one that the server assigned.
+     */
+    name: string;
+    skills: Array<AgentsAPI.BetaManagedAgentsAnthropicSkill | AgentsAPI.BetaManagedAgentsCustomSkill>;
+    system: string | null;
+    tools: Array<AgentsAPI.BetaManagedAgentsAgentToolset20260401 | AgentsAPI.BetaManagedAgentsMCPToolset | AgentsAPI.BetaManagedAgentsCustomTool>;
+    type: 'inline';
+}
+/**
+ * An execution thread within a `session`. Each session has one primary thread plus
+ * zero or more child threads.
+ */
+export interface BetaManagedAgentsSessionThread {
+    /**
+     * Unique identifier for this thread.
+     */
+    id: string;
+    /**
+     * Resolved agent definition for this thread. Snapshot of the agent at thread
+     * creation time.
+     */
+    agent: AgentsAPI.BetaManagedAgentsSessionThreadAgent | AgentsAPI.BetaManagedAgentsAdvisor | BetaManagedAgentsInlineAgent;
+    /**
+     * When the thread was archived. Null if not archived.
+     */
+    archived_at: string | null;
+    /**
+     * When the thread was created.
+     */
+    created_at: string;
+    /**
+     * Parent thread that spawned this thread. Null for the primary thread.
+     */
+    parent_thread_id: string | null;
+    /**
+     * The session this thread belongs to.
+     */
+    session_id: string;
+    /**
+     * Timing statistics for this thread. Null until the thread's first status
+     * transition.
+     */
+    stats: BetaManagedAgentsSessionThreadStats | null;
+    /**
+     * Current execution status of the thread.
+     */
+    status: BetaManagedAgentsSessionThreadStatus;
+    type: 'session_thread';
+    /**
+     * When the thread was last updated.
+     */
+    updated_at: string;
+    /**
+     * Cumulative token usage for this thread. Null until the thread's first idle
+     * transition.
+     */
+    usage: BetaManagedAgentsSessionThreadUsage | null;
+    /**
+     * Identifier of the workflow run that created the thread, or `null` for any other
+     * thread.
+     */
+    workflow_run_id: string | null;
+}
+/**
+ * Timing statistics for a session thread.
+ */
+export interface BetaManagedAgentsSessionThreadStats {
+    /**
+     * Cumulative time in seconds the thread spent actively running. Excludes idle
+     * time.
+     */
+    active_seconds?: number;
+    /**
+     * Elapsed time since thread creation in seconds. For archived threads, frozen at
+     * the final update.
+     */
+    duration_seconds?: number;
+    /**
+     * Time in seconds for the thread to begin running. Zero for child threads, which
+     * start immediately.
+     */
+    startup_seconds?: number;
+}
+export type BetaManagedAgentsSessionThreadStatus = 'running' | 'idle' | 'rescheduling' | 'terminated';
+/**
+ * Cumulative token usage for a session thread across all turns.
+ */
+export interface BetaManagedAgentsSessionThreadUsage {
+    /**
+     * Cumulative time in seconds this thread spent in running status. Equal to
+     * `stats.active_seconds`; surfaced here so a thread's usage carries every quantity
+     * its cost is priced on.
+     */
+    active_seconds?: number;
+    /**
+     * Tokens used to create prompt cache entries, broken down by cache TTL.
+     */
+    cache_creation?: SessionsAPI.BetaManagedAgentsCacheCreationUsage;
+    /**
+     * Total tokens read from prompt cache.
+     */
+    cache_read_input_tokens?: number;
+    /**
+     * Total input tokens consumed across all turns.
+     */
+    input_tokens?: number;
+    /**
+     * Cumulative list cost of this thread across all turns, priced at public list
+     * rates. Absent until cost tracking is available for the thread. Each figure is
+     * rounded to the nearest cent independently and the session's aggregate
+     * `usage.list_cost` additionally includes session runtime, so per-thread costs do
+     * not sum exactly to the session figure; the session figure is authoritative and
+     * is what a budget is enforced against.
+     */
+    list_cost?: BetaAPI.BetaMonetaryAmount | null;
+    /**
+     * Total output tokens generated across all turns.
+     */
+    output_tokens?: number;
+    /**
+     * Cumulative server-executed tool usage across all turns of this thread. Absent
+     * until server-tool tracking is available for the thread.
+     */
+    server_tool_use?: SessionsAPI.BetaManagedAgentsServerToolUsage | null;
+}
+/**
+ * Server-sent event in a single thread's stream.
+ */
+export type BetaManagedAgentsStreamSessionThreadEvents = EventsAPI.BetaManagedAgentsUserMessageEvent | EventsAPI.BetaManagedAgentsUserInterruptEvent | EventsAPI.BetaManagedAgentsUserToolConfirmationEvent | EventsAPI.BetaManagedAgentsUserCustomToolResultEvent | EventsAPI.BetaManagedAgentsAgentCustomToolUseEvent | EventsAPI.BetaManagedAgentsAgentMessageEvent | EventsAPI.BetaManagedAgentsAgentThinkingEvent | EventsAPI.BetaManagedAgentsAgentMCPToolUseEvent | EventsAPI.BetaManagedAgentsAgentMCPToolResultEvent | EventsAPI.BetaManagedAgentsAgentToolUseEvent | EventsAPI.BetaManagedAgentsAgentToolResultEvent | EventsAPI.BetaManagedAgentsAgentThreadMessageReceivedEvent | EventsAPI.BetaManagedAgentsAgentThreadMessageSentEvent | EventsAPI.BetaManagedAgentsAgentThreadContextCompactedEvent | EventsAPI.BetaManagedAgentsSessionErrorEvent | EventsAPI.BetaManagedAgentsSessionStatusRescheduledEvent | EventsAPI.BetaManagedAgentsSessionStatusRunningEvent | EventsAPI.BetaManagedAgentsSessionStatusIdleEvent | EventsAPI.BetaManagedAgentsSessionStatusTerminatedEvent | EventsAPI.BetaManagedAgentsSessionThreadCreatedEvent | EventsAPI.BetaManagedAgentsSpanOutcomeEvaluationStartEvent | EventsAPI.BetaManagedAgentsSpanOutcomeEvaluationEndEvent | EventsAPI.BetaManagedAgentsSpanModelRequestStartEvent | EventsAPI.BetaManagedAgentsSpanModelRequestEndEvent | EventsAPI.BetaManagedAgentsSpanOutcomeEvaluationOngoingEvent | EventsAPI.BetaManagedAgentsUserDefineOutcomeEvent | EventsAPI.BetaManagedAgentsSessionDeletedEvent | EventsAPI.BetaManagedAgentsSessionThreadStatusRunningEvent | EventsAPI.BetaManagedAgentsSessionThreadStatusIdleEvent | EventsAPI.BetaManagedAgentsSessionThreadStatusTerminatedEvent | SessionsAPI.BetaManagedAgentsUserToolResultEvent | EventsAPI.BetaManagedAgentsSessionThreadStatusRescheduledEvent | SessionsAPI.BetaManagedAgentsSessionUpdatedEvent | SessionsAPI.BetaManagedAgentsStartEvent | SessionsAPI.BetaManagedAgentsDeltaEvent | SessionsAPI.BetaManagedAgentsSystemMessageEvent | SessionsAPI.BetaManagedAgentsSessionUsageEvent | EventsAPI.BetaManagedAgentsWorkflowRunCreatedEvent | EventsAPI.BetaManagedAgentsWorkflowRunStatusEndedEvent | EventsAPI.BetaManagedAgentsWorkflowRunPhaseStartedEvent | EventsAPI.BetaManagedAgentsWorkflowRunPhaseEndedEvent | EventsAPI.BetaManagedAgentsWorkflowRunStatusRunningEvent | EventsAPI.BetaManagedAgentsWorkflowRunStatusIdleEvent | EventsAPI.BetaManagedAgentsWorkflowRunErrorEvent;
+export interface ThreadRetrieveParams {
+    /**
+     * Path param
+     */
+    session_id: string;
+    /**
+     * Header param: This endpoint is in beta: requests must send
+     * `managed-agents-2026-04-01` in this header.
+     */
+    betas?: Array<BetaAPI.AnthropicBeta>;
+    /**
+     * Header param: Optional header to select the Workspace for this request. The
+     * value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+     *
+     * Only needed for credentials that can act on more than one Workspace. A
+     * credential that belongs to a specific Workspace may omit it; if sent, it must
+     * match that Workspace.
+     */
+    workspace_id?: string;
+}
+export interface ThreadListParams extends PageCursorParams {
+    /**
+     * Query param: Return only threads that have one of these statuses.
+     *
+     * Repeat the parameter to give more than one status. Leave it out to return
+     * threads of every status.
+     */
+    statuses?: Array<BetaManagedAgentsSessionThreadStatus>;
+    /**
+     * Header param: This endpoint is in beta: requests must send
+     * `managed-agents-2026-04-01` in this header.
+     */
+    betas?: Array<BetaAPI.AnthropicBeta>;
+    /**
+     * Header param: Optional header to select the Workspace for this request. The
+     * value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+     *
+     * Only needed for credentials that can act on more than one Workspace. A
+     * credential that belongs to a specific Workspace may omit it; if sent, it must
+     * match that Workspace.
+     */
+    workspace_id?: string;
+}
+export interface ThreadArchiveParams {
+    /**
+     * Path param
+     */
+    session_id: string;
+    /**
+     * Header param: This endpoint is in beta: requests must send
+     * `managed-agents-2026-04-01` in this header.
+     */
+    betas?: Array<BetaAPI.AnthropicBeta>;
+    /**
+     * Header param: Optional header to select the Workspace for this request. The
+     * value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+     *
+     * Only needed for credentials that can act on more than one Workspace. A
+     * credential that belongs to a specific Workspace may omit it; if sent, it must
+     * match that Workspace.
+     */
+    workspace_id?: string;
+}
+export declare namespace Threads {
+    export { type BetaManagedAgentsInlineAgent as BetaManagedAgentsInlineAgent, type BetaManagedAgentsSessionThread as BetaManagedAgentsSessionThread, type BetaManagedAgentsSessionThreadStats as BetaManagedAgentsSessionThreadStats, type BetaManagedAgentsSessionThreadStatus as BetaManagedAgentsSessionThreadStatus, type BetaManagedAgentsSessionThreadUsage as BetaManagedAgentsSessionThreadUsage, type BetaManagedAgentsStreamSessionThreadEvents as BetaManagedAgentsStreamSessionThreadEvents, type BetaManagedAgentsSessionThreadsPageCursor as BetaManagedAgentsSessionThreadsPageCursor, type ThreadRetrieveParams as ThreadRetrieveParams, type ThreadListParams as ThreadListParams, type ThreadArchiveParams as ThreadArchiveParams, };
+    export { Events as Events, type EventListParams as EventListParams, type EventStreamParams as EventStreamParams, };
+}
+//# sourceMappingURL=threads.d.ts.map
