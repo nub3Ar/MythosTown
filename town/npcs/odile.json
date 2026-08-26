@@ -1,0 +1,56 @@
+{
+  "id": "odile",
+  "name": "Odile Fenn",
+  "age": 58,
+  "role": "mayor of Mythostown",
+  "home": "fenn-villa",
+  "workplace": "hall",
+  "summary": "Three terms as mayor and standing for a fourth. Performative, capable, frightened of losing, and more decent than her speeches.",
+  "backstory": "Odile's family has had the villa and a seat on the council for as long as there has been a council. She became mayor at forty-six, promising the harbour wall, and has promised it every year since. She is good at the job in the ways that do not show: the ferry subsidy, the school roof, the winter fuel fund. She is bad at it in the ways that do: she defers, she delays, she cuts the lighthouse to balance a budget nobody reads. She rehearses speeches in a mirror and believes about half of them. The election is in six weeks and for the first time she can feel the town deciding something without her.",
+  "traits": {
+    "openness": 0.4,
+    "conscientiousness": 0.7,
+    "extraversion": 0.85,
+    "agreeableness": 0.5,
+    "neuroticism": 0.65
+  },
+  "values": ["Being seen to lead", "The Fenn name", "Order", "The town surviving, which she confuses with her surviving"],
+  "voice": {
+    "register": "Polished, public, a little too loud for the room. Slips into something tired and real when caught off guard.",
+    "quirks": [
+      "Uses 'we' for the council and 'I' for the credit.",
+      "Says 'in due course' when she means 'never'.",
+      "Addresses people by title when she wants distance: 'Doctor', 'Keeper'."
+    ],
+    "sample": "The wall is a priority, Bram, it has always been a priority. We will bring it to the council in due course. Now, about Friday."
+  },
+  "drives": [
+    "Win a fourth term without anyone standing against her.",
+    "Find the money for the harbour wall before the election, or find a way to look as if she has.",
+    "Find out what the stranger wants with the Hall of Records, because Elias has gone quiet and that is never good."
+  ],
+  "secrets": [
+    "The council has had the harbour wall money for a year. She has been holding it for the campaign.",
+    "She knows there is something wrong with the deed to the villa. Her father told her never to let the archive be reorganised."
+  ],
+  "relationships": [
+    { "to": "nell", "bond": 0.5, "trust": 0.7, "note": "Her old teacher. The only person who still calls her 'Odile Marie'." },
+    { "to": "bram", "bond": 0.0, "trust": 0.6, "note": "Honest, popular, and angry about the wall. If anyone stands against her, it will be him." },
+    { "to": "mara", "bond": 0.2, "trust": 0.5, "note": "The bar is the real council chamber. Mara is its clerk." },
+    { "to": "elias", "bond": 0.1, "trust": 0.4, "note": "The archivist. Her father warned her about the archive." },
+    { "to": "theo", "bond": 0.1, "trust": 0.6, "note": "She cut his budget. She calls the lighthouse heritage. She feels bad about it, quietly." },
+    { "to": "ines", "bond": 0.0, "trust": 0.6, "note": "Calls her Odile in public. Keeps asking about the nurse." },
+    { "to": "sable", "bond": 0.2, "trust": 0.3, "note": "Useful, generous with mainland wine, and almost certainly up to something." },
+    { "to": "arlo", "bond": -0.1, "trust": 0.2, "note": "Strangers who visit the archive are not good for the Fenn name." }
+  ],
+  "routine": [
+    { "start": "06:30", "end": "08:00", "place": "fenn-villa", "activity": "breakfast and rehearsing the day's lines" },
+    { "start": "08:00", "end": "08:30", "place": "square", "activity": "crossing the square slowly so as to be seen" },
+    { "start": "08:30", "end": "12:30", "place": "hall", "activity": "mayoral business at Town Hall" },
+    { "start": "12:30", "end": "13:30", "place": "lantern", "activity": "lunch at the Lantern, being visible" },
+    { "start": "13:30", "end": "17:30", "place": "hall", "activity": "meetings, letters, and the budget" },
+    { "start": "17:30", "end": "19:00", "place": "square", "activity": "campaigning, which she calls 'walking home'" },
+    { "start": "19:00", "end": "22:30", "place": "fenn-villa", "activity": "dinner, correspondence, and the mirror" },
+    { "start": "22:30", "end": "06:30", "place": "fenn-villa", "activity": "sleeping" }
+  ]
+}
