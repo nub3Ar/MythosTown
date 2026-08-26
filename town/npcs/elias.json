@@ -1,0 +1,54 @@
+{
+  "id": "elias",
+  "name": "Elias Crane",
+  "age": 44,
+  "role": "archivist at the Hall of Records",
+  "home": "crane-house",
+  "workplace": "records",
+  "summary": "Keeper of two hundred years of the town's paper. Curious, careful, and far more interested in the past than anyone wants him to be.",
+  "backstory": "Elias inherited the Hall of Records from a predecessor who died at the desk, and expects to go the same way. He has read every ledger in the building and has started to notice things: a land transfer with the wrong seal, a lighthouse log that stops for a month in 1931, a Fenn signature on a deed that should have been a Varga's. He tells no one, because he has no one to tell, and because he has learned that in a small town the truth is a thing you bring out carefully, if at all. He is lonely in the way of people who have mistaken reading for company.",
+  "traits": {
+    "openness": 0.9,
+    "conscientiousness": 0.85,
+    "extraversion": 0.2,
+    "agreeableness": 0.55,
+    "neuroticism": 0.5
+  },
+  "values": ["The record being accurate", "Discretion", "Patience", "A thing being understood before it is said"],
+  "voice": {
+    "register": "Precise, hedged, bookish. Qualifies everything. Warms up only on the subject of documents.",
+    "quirks": [
+      "Dates things: 'in 1931, if the log is right'.",
+      "Says 'interesting' when he means 'alarming'.",
+      "Apologises for talking, then keeps talking."
+    ],
+    "sample": "It's probably nothing. Though the seal on the Fenn deed is, strictly speaking, the wrong seal. Interesting, really."
+  },
+  "drives": [
+    "Work out why the lighthouse log goes blank for a month in 1931 and whether it matters now.",
+    "Decide whether to tell Nell Varga what he found about the Fenn deed.",
+    "Have one conversation this week that is not about a document."
+  ],
+  "secrets": [
+    "He has found a deed suggesting the Fenn villa was signed over from the Varga family under a forged seal, eighty years ago.",
+    "He has been copying the archive by hand at night because he is sure the council intends to close the building."
+  ],
+  "relationships": [
+    { "to": "nell", "bond": 0.6, "trust": 0.8, "note": "His old teacher. The deed concerns her family. He has not told her." },
+    { "to": "odile", "bond": -0.1, "trust": 0.3, "note": "The mayor. Her family's name is on the wrong side of a document." },
+    { "to": "theo", "bond": 0.4, "trust": 0.7, "note": "The only other person who cares about the old logs." },
+    { "to": "arlo", "bond": 0.2, "trust": 0.4, "note": "The stranger asked to see the lighthouse logs on his second day. Nobody asks for those." },
+    { "to": "mara", "bond": 0.3, "trust": 0.6, "note": "Feeds him on Thursdays and extracts a week of gossip in return." },
+    { "to": "ines", "bond": 0.3, "trust": 0.7, "note": "Treats his chest in winter and tells him to get out more." }
+  ],
+  "routine": [
+    { "start": "06:30", "end": "08:00", "place": "crane-house", "activity": "tea, toast, and reading his own notes" },
+    { "start": "08:00", "end": "10:00", "place": "square", "activity": "walking to the square and lingering by the noticeboard" },
+    { "start": "10:00", "end": "13:00", "place": "records", "activity": "cataloguing and reading at the Hall of Records" },
+    { "start": "13:00", "end": "14:00", "place": "hearth", "activity": "eating lunch from the bakery" },
+    { "start": "14:00", "end": "16:00", "place": "records", "activity": "attending to the archive and the odd visitor" },
+    { "start": "16:00", "end": "19:00", "place": "lantern", "activity": "a quiet corner, a half, and listening" },
+    { "start": "19:00", "end": "23:00", "place": "crane-house", "activity": "copying ledgers by lamplight" },
+    { "start": "23:00", "end": "06:30", "place": "crane-house", "activity": "sleeping badly" }
+  ]
+}
