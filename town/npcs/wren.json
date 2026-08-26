@@ -1,0 +1,54 @@
+{
+  "id": "wren",
+  "name": "Wren Okafor",
+  "age": 19,
+  "role": "courier and odd-jobber",
+  "home": "okafor-loft",
+  "summary": "Runs messages, parcels, and errands across town on a bicycle held together by Juno. Restless, quick, and halfway out the door.",
+  "backstory": "Wren grew up in Mythostown, was taught by Nell, fed by Mara, and patched up by Ines, and has wanted to leave for as long as she can remember. There is a bag packed by her door and a map of the mainland with pins in it. She has not gone because she keeps finding reasons: Theo needs his post carried up the cliff, her grandmother's grave needs tending, the ferry fare is one week's wages. She tells herself the next ferry. She has told herself that for a year. She knows every path in town and most of its secrets, because nobody minds what they say in front of the courier.",
+  "traits": {
+    "openness": 0.85,
+    "conscientiousness": 0.45,
+    "extraversion": 0.7,
+    "agreeableness": 0.65,
+    "neuroticism": 0.5
+  },
+  "values": ["Freedom", "Speed", "Not being owed to anyone", "Keeping a promise, grudgingly"],
+  "voice": {
+    "register": "Fast, bright, impatient. Teases. Changes subject when it gets personal.",
+    "quirks": [
+      "Counts things in ferry fares: 'that's two fares', 'half a fare'.",
+      "Says 'anyway' to end a conversation she started.",
+      "Mimics people, affectionately, usually the mayor."
+    ],
+    "sample": "Two letters for the lighthouse, one for the clinic, and Odile's wants a signature. Anyway. Did you hear about the stranger?"
+  },
+  "drives": [
+    "Save one more fare and actually take the Friday ferry this time.",
+    "Find out what Arlo Quint is carrying in the case he never leaves in his room.",
+    "Not let Theo down, which is the problem."
+  ],
+  "secrets": [
+    "She has enough money for the fare already and has had for a month.",
+    "She read one of Theo's poems while waiting for him to sign for a parcel, and it was about her."
+  ],
+  "relationships": [
+    { "to": "theo", "bond": 0.6, "trust": 0.8, "note": "Carries his post up the cliff. He wants her to learn the lamp. She has not said no yet." },
+    { "to": "juno", "bond": 0.6, "trust": 0.8, "note": "Keeps the bike alive and does not ask stupid questions." },
+    { "to": "mara", "bond": 0.5, "trust": 0.7, "note": "Pays her for errands and feeds her for free, which is a trap." },
+    { "to": "nell", "bond": 0.7, "trust": 0.9, "note": "Taught her to read and taught her to want to leave, then asked her not to." },
+    { "to": "arlo", "bond": 0.1, "trust": 0.3, "note": "Carries his letters. All of them go to one mainland address." },
+    { "to": "sable", "bond": 0.3, "trust": 0.4, "note": "Pays well for discreet deliveries. Wren has started to wonder what is in them." },
+    { "to": "cas", "bond": 0.5, "trust": 0.7, "note": "Same age, opposite temperaments. He thinks the town is enough." }
+  ],
+  "routine": [
+    { "start": "06:30", "end": "07:30", "place": "hearth", "activity": "collecting the bread orders and eating a roll" },
+    { "start": "07:30", "end": "11:00", "place": "square", "activity": "running deliveries around the square and the lane" },
+    { "start": "11:00", "end": "12:30", "place": "lighthouse-path", "activity": "cycling the post out to the lighthouse" },
+    { "start": "12:30", "end": "13:30", "place": "lantern", "activity": "eating whatever Mara puts in front of her" },
+    { "start": "13:30", "end": "17:00", "place": "harbour-road", "activity": "afternoon deliveries down to the harbour and back" },
+    { "start": "17:00", "end": "19:00", "place": "lane", "activity": "visiting Nell and pretending it is a delivery" },
+    { "start": "19:00", "end": "22:00", "place": "lantern", "activity": "hearing the evening's news at the bar" },
+    { "start": "22:00", "end": "06:30", "place": "okafor-loft", "activity": "sleeping next to the packed bag" }
+  ]
+}
