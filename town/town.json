@@ -1,0 +1,175 @@
+{
+  "name": "Mythostown",
+  "tagline": "A harbour town at the end of the ferry line, where everyone knows everyone and nobody knows everything.",
+  "description": "Mythostown sits on a cold grey harbour with a lighthouse on the point and a market square at its heart. Four hundred people on paper, far fewer in winter. The ferry comes twice a week. There is one inn, one bakery, one forge, one clinic, one hall of records, and one mayor who would like to remain one. The lighthouse lamp has started failing. The harbour wall is cracking. Everyone has an opinion about both.",
+  "clock": {
+    "minutesPerTick": 10,
+    "startDay": 1,
+    "startMinute": 360
+  },
+  "commonKnowledge": [
+    "The Lantern is where news travels. If it was said at the bar, the whole town knows by morning.",
+    "The lighthouse lamp has failed twice this month. Theo Ashgrove keeps it and says it is the wiring.",
+    "The mayoral election is in six weeks. Odile Fenn is standing again. Nobody has yet stood against her.",
+    "A stranger, Arlo Quint, came in on the ferry last week and took a room at the Lantern. He has not said what he is here for.",
+    "The harbour wall is cracked on the north side. The council has argued about paying for it for two years.",
+    "Nell Varga taught half the town to read, including the mayor.",
+    "The ferry comes on Tuesdays and Fridays. Day 1 is a Monday.",
+    "Bram Tully's boat, the Marigold, is the oldest working boat in the harbour."
+  ],
+  "places": [
+    {
+      "id": "square",
+      "name": "Market Square",
+      "kind": "public",
+      "description": "Cobbles, a dry fountain, a noticeboard nobody updates, and a view down Harbour Road to the water. Every street in town ends here.",
+      "exits": ["lantern", "hearth", "forge", "hall", "records", "clinic", "harbour-road", "lane"]
+    },
+    {
+      "id": "lantern",
+      "name": "The Lantern",
+      "kind": "public",
+      "description": "The inn. Low beams, a long bar, a fire that is always lit, and a landlady who hears everything. Rooms upstairs for lodgers.",
+      "exits": ["square", "harbour-road", "lantern-rooms"],
+      "openHours": ["07:00", "01:00"]
+    },
+    {
+      "id": "lantern-rooms",
+      "name": "the rooms above the Lantern",
+      "kind": "home",
+      "description": "A narrow corridor of lodgers' rooms over the bar. Thin walls. You can hear the fire being banked at night.",
+      "exits": ["lantern"]
+    },
+    {
+      "id": "hearth",
+      "name": "The Hearth",
+      "kind": "work",
+      "description": "The bakery. Ovens lit before dawn, flour on everything, a queue at seven. The best gossip is bought with the first loaf.",
+      "exits": ["square", "hearth-loft"],
+      "openHours": ["05:00", "14:00"]
+    },
+    {
+      "id": "hearth-loft",
+      "name": "the loft above the Hearth",
+      "kind": "home",
+      "description": "One warm room over the ovens. The apprentice sleeps here and never needs a blanket.",
+      "exits": ["hearth"]
+    },
+    {
+      "id": "forge",
+      "name": "The Forge",
+      "kind": "work",
+      "description": "Smithy and repair shop. Anvils, a generator that coughs, engine parts in labelled tins. Juno fixes what the town breaks.",
+      "exits": ["square", "forge-cottage"],
+      "openHours": ["07:30", "18:30"]
+    },
+    {
+      "id": "forge-cottage",
+      "name": "the cottage behind the Forge",
+      "kind": "home",
+      "description": "Two rooms, a bench, a radio that only gets the shipping forecast.",
+      "exits": ["forge", "lane"]
+    },
+    {
+      "id": "hall",
+      "name": "Town Hall",
+      "kind": "work",
+      "description": "A council chamber with twelve chairs and a mayor's office with a good view of the square. The clock on the front is four minutes slow.",
+      "exits": ["square"],
+      "openHours": ["08:30", "17:30"]
+    },
+    {
+      "id": "records",
+      "name": "Hall of Records",
+      "kind": "work",
+      "description": "Birth, death, land, and lighthouse logs back two hundred years. Cold, quiet, and locked at four. Elias Crane has the only key.",
+      "exits": ["square"],
+      "openHours": ["10:00", "16:00"]
+    },
+    {
+      "id": "clinic",
+      "name": "The Clinic",
+      "kind": "work",
+      "description": "Two rooms and a waiting bench. Dr Halloran sees anyone, bills some, and sleeps upstairs.",
+      "exits": ["square", "clinic-flat"],
+      "openHours": ["08:00", "18:00"]
+    },
+    {
+      "id": "clinic-flat",
+      "name": "the flat above the Clinic",
+      "kind": "home",
+      "description": "Books, a kettle, an unmade bed, and a window onto the square.",
+      "exits": ["clinic"]
+    },
+    {
+      "id": "harbour-road",
+      "name": "Harbour Road",
+      "kind": "public",
+      "description": "The steep street from the square down to the water, lined with nets drying and cats watching them.",
+      "exits": ["square", "lantern", "harbour", "lighthouse-path"]
+    },
+    {
+      "id": "harbour",
+      "name": "The Harbour",
+      "kind": "landmark",
+      "description": "Grey water, six boats, a cracked north wall, and a bench where the old men decide what the weather will do.",
+      "exits": ["harbour-road", "lighthouse-path", "tully-shack"]
+    },
+    {
+      "id": "tully-shack",
+      "name": "Bram's shack",
+      "kind": "home",
+      "description": "A fisherman's hut on the harbour's edge. Smells of tar and tea. A photograph of a woman on the shelf.",
+      "exits": ["harbour"]
+    },
+    {
+      "id": "lighthouse-path",
+      "name": "Lighthouse Path",
+      "kind": "landmark",
+      "description": "A windy track along the cliff from the harbour to the point. Gorse, gulls, and the sound of the sea below.",
+      "exits": ["harbour", "harbour-road", "lighthouse"]
+    },
+    {
+      "id": "lighthouse",
+      "name": "The Lighthouse",
+      "kind": "landmark",
+      "description": "White tower on the point. A keeper's room at the base, a lamp at the top that has started to fail, and two hundred years of logbooks in between.",
+      "exits": ["lighthouse-path"]
+    },
+    {
+      "id": "lane",
+      "name": "Cobble Lane",
+      "kind": "public",
+      "description": "The street of cottages behind the square. Gardens, washing lines, and curtains that move when you walk past.",
+      "exits": ["square", "forge-cottage", "crane-house", "okafor-loft", "fenn-villa", "varga-cottage"]
+    },
+    {
+      "id": "crane-house",
+      "name": "the Crane house",
+      "kind": "home",
+      "description": "A tall thin house full of boxes that have not been unpacked in twenty years.",
+      "exits": ["lane"]
+    },
+    {
+      "id": "okafor-loft",
+      "name": "Wren's loft",
+      "kind": "home",
+      "description": "A room over a disused stable. A bicycle, a map of the mainland with pins in it, a packed bag by the door.",
+      "exits": ["lane"]
+    },
+    {
+      "id": "fenn-villa",
+      "name": "the Fenn villa",
+      "kind": "home",
+      "description": "The largest house in town, with a flagpole and a study where the mayor rehearses speeches to the mirror.",
+      "exits": ["lane"]
+    },
+    {
+      "id": "varga-cottage",
+      "name": "Nell's cottage",
+      "kind": "home",
+      "description": "Small, tidy, and lined with books. A chair by the window that faces the lane, so nothing passes unseen.",
+      "exits": ["lane"]
+    }
+  ]
+}
