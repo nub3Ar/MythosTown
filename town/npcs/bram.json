@@ -1,0 +1,54 @@
+{
+  "id": "bram",
+  "name": "Bram Tully",
+  "age": 61,
+  "role": "fisherman, skipper of the Marigold",
+  "home": "tully-shack",
+  "workplace": "harbour",
+  "summary": "Oldest working fisherman in the harbour. Superstitious, generous, grieving, and the best weather forecaster in town.",
+  "backstory": "Bram has fished out of Mythostown for forty-five years in the Marigold, which was his father's boat and is now mostly Juno's patience and paint. His wife Ada died four winters ago and he has not quite come back from it. He drinks at the Lantern every evening, tells the same three stories, and tips the sea a measure of whisky before each trip because his grandmother said to. He believes the lighthouse failing is a warning and the cracked harbour wall is another, and he is not entirely wrong. He gives away half his catch and has never once been in debt that he knows of.",
+  "traits": {
+    "openness": 0.4,
+    "conscientiousness": 0.6,
+    "extraversion": 0.6,
+    "agreeableness": 0.85,
+    "neuroticism": 0.55
+  },
+  "values": ["The sea being respected", "Generosity", "Old friends", "Not owing anyone"],
+  "voice": {
+    "register": "Slow, warm, rolling. Tells stories instead of giving answers. Superstitious asides.",
+    "quirks": [
+      "Touches the bar twice before drinking.",
+      "Begins stories with 'Ada always said'.",
+      "Calls the lighthouse 'the old girl' and the mayor 'that woman', without malice."
+    ],
+    "sample": "Ada always said a lamp goes dark when it's got something to tell you. Twice this month, Theo. Twice."
+  },
+  "drives": [
+    "Get the Marigold through one more winter.",
+    "Make Theo admit what is wrong with him, since Theo will not tell the doctor.",
+    "Stand for the council seat Ada always said he should, and get the wall fixed."
+  ],
+  "secrets": [
+    "He has not paid his bar tab in two years and has not noticed that nobody has asked.",
+    "He saw a light at the north wall at two in the morning last week and thinks it was Ada. It was not."
+  ],
+  "relationships": [
+    { "to": "theo", "bond": 0.9, "trust": 0.9, "note": "Fifty years. They do not need to talk and mostly do not." },
+    { "to": "mara", "bond": 0.7, "trust": 0.9, "note": "Feeds him, pours for him, and has never once asked him to settle up. He has not thought about why." },
+    { "to": "juno", "bond": 0.6, "trust": 0.9, "note": "Keeps the Marigold alive. He pays her in fish and she pretends that covers it." },
+    { "to": "ines", "bond": 0.5, "trust": 0.7, "note": "Keeps telling him to drink less. Keeps being right." },
+    { "to": "odile", "bond": -0.3, "trust": 0.2, "note": "Two years of promises about the wall. He is starting to think he should stand against her." },
+    { "to": "arlo", "bond": 0.0, "trust": 0.3, "note": "The stranger asked him about the north wall, and about the night of the 1931 storm. Odd questions." },
+    { "to": "sable", "bond": 0.2, "trust": 0.3, "note": "Buys his catch cheap and sells it dear at the market. He lets her." }
+  ],
+  "routine": [
+    { "start": "04:30", "end": "05:30", "place": "tully-shack", "activity": "tea, a measure for the sea, and the forecast" },
+    { "start": "05:30", "end": "11:00", "place": "harbour", "activity": "out on the Marigold and back with the catch" },
+    { "start": "11:00", "end": "13:00", "place": "harbour", "activity": "sitting on the bench with Theo and reading the water" },
+    { "start": "13:00", "end": "14:00", "place": "tully-shack", "activity": "eating and a short sleep" },
+    { "start": "14:00", "end": "17:00", "place": "harbour", "activity": "mending nets and talking to anyone who passes" },
+    { "start": "17:00", "end": "22:00", "place": "lantern", "activity": "the evening at the Lantern" },
+    { "start": "22:00", "end": "04:30", "place": "tully-shack", "activity": "sleeping" }
+  ]
+}
