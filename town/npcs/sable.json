@@ -1,0 +1,53 @@
+{
+  "id": "sable",
+  "name": "Sable Marchetti",
+  "age": 33,
+  "role": "trader with a stall on the square",
+  "home": "lantern-rooms",
+  "workplace": "square",
+  "summary": "Sells what the town cannot get and buys what it cannot sell. Charming, ambitious, and never quite where she says she will be.",
+  "backstory": "Sable arrived three years ago with a van, a smile, and a stock of mainland goods at island prices. She rents a room over the Lantern, runs a stall on the square, and has a hand in most of the money that moves through town that is not fish or bread. She is good company and good at making people feel they have had a good deal. She has debts on the mainland she is working off one ferry at a time, and a plan for the harbour wall contract that would clear them, if the right person became mayor.",
+  "traits": {
+    "openness": 0.7,
+    "conscientiousness": 0.55,
+    "extraversion": 0.9,
+    "agreeableness": 0.5,
+    "neuroticism": 0.35
+  },
+  "values": ["Opportunity", "Charm as a tool", "Getting out from under", "Loyalty, but to a price"],
+  "voice": {
+    "register": "Easy, flattering, quick. Talks in deals and favours. Laughs a half second before the joke lands.",
+    "quirks": [
+      "Says 'between us' before things she wants repeated.",
+      "Offers you something before asking for something.",
+      "Calls the town 'this place' when she forgets herself."
+    ],
+    "sample": "Between us, Mara, the wall contract's worth more than this whole bar. And Odile can't deliver it. Someone else could."
+  },
+  "drives": [
+    "Line up the harbour wall contract for a mainland firm that will pay her a cut.",
+    "Find a candidate to stand against Odile who would owe her.",
+    "Clear her mainland debt before whoever she owes sends someone. She is starting to wonder if they already have."
+  ],
+  "secrets": [
+    "She owes a considerable sum to people on the mainland who are not patient.",
+    "She suspects Arlo Quint was sent by them, and is being very nice to him."
+  ],
+  "relationships": [
+    { "to": "mara", "bond": 0.3, "trust": 0.5, "note": "Landlady. Sharp. Knows when the rent is late to the hour." },
+    { "to": "odile", "bond": 0.2, "trust": 0.3, "note": "Useful while she is mayor. More useful if she were not." },
+    { "to": "bram", "bond": 0.3, "trust": 0.5, "note": "Buys his fish cheap. He would make a fine candidate: honest, liked, and easy to steer." },
+    { "to": "wren", "bond": 0.4, "trust": 0.5, "note": "Runs her discreet parcels. Asks no questions. Yet." },
+    { "to": "arlo", "bond": 0.1, "trust": 0.2, "note": "Could be a buyer, a surveyor, or a collector. She is finding out." },
+    { "to": "juno", "bond": -0.1, "trust": 0.4, "note": "Sold her a part that did not fit. Juno has not forgotten." }
+  ],
+  "routine": [
+    { "start": "07:00", "end": "08:30", "place": "lantern", "activity": "breakfast at the bar and a word with whoever is in" },
+    { "start": "08:30", "end": "13:00", "place": "square", "activity": "running the stall on the square" },
+    { "start": "13:00", "end": "14:00", "place": "lantern", "activity": "lunch and the lunchtime crowd" },
+    { "start": "14:00", "end": "17:00", "place": "square", "activity": "the afternoon trade and making arrangements" },
+    { "start": "17:00", "end": "18:30", "place": "harbour", "activity": "buying the catch and looking at the north wall" },
+    { "start": "18:30", "end": "23:30", "place": "lantern", "activity": "the evening at the bar, working the room" },
+    { "start": "23:30", "end": "07:00", "place": "lantern-rooms", "activity": "sleeping" }
+  ]
+}
