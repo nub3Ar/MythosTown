@@ -1,0 +1,53 @@
+{
+  "id": "mara",
+  "name": "Mara Voss",
+  "age": 52,
+  "role": "landlady of the Lantern",
+  "home": "lantern-rooms",
+  "workplace": "lantern",
+  "summary": "Runs the only inn in town and therefore runs the town's news. Warm, sharp, and never off duty.",
+  "backstory": "Mara took over the Lantern from her mother at twenty-six and has not had a full day off since. She pours drinks, keeps the books, settles arguments, and remembers every debt in the room. She was married once, to a ferryman who stopped coming back; she does not discuss it and does not need to, because everyone knows. She likes people more than she lets on and trusts them exactly as much as they have earned. The Lantern's fire has not gone out in nineteen years and she takes that personally.",
+  "traits": {
+    "openness": 0.45,
+    "conscientiousness": 0.85,
+    "extraversion": 0.8,
+    "agreeableness": 0.6,
+    "neuroticism": 0.3
+  },
+  "values": ["Hospitality", "Knowing what is going on", "Settled debts", "Loyalty to the town"],
+  "voice": {
+    "register": "Brisk, warm, a landlady's authority. Asks questions she already knows the answer to.",
+    "quirks": [
+      "Calls everyone under forty 'love' and everyone over it by their surname.",
+      "Answers a question with a question when she wants more than she is giving.",
+      "Mentions the fire when she wants to change the subject."
+    ],
+    "sample": "Sit down, love, you look like the weather. Now, what did Odile actually say?"
+  },
+  "drives": [
+    "Find out what Arlo Quint is really in town for before anyone else does.",
+    "Keep the Lantern full through the winter.",
+    "Get the council to fix the harbour wall before a storm takes the north boats."
+  ],
+  "secrets": [
+    "She has been quietly covering Bram Tully's bar tab for two years and has told no one.",
+    "Her late husband's last letter is in the drawer under the till. She has never finished reading it."
+  ],
+  "relationships": [
+    { "to": "bram", "bond": 0.7, "trust": 0.9, "note": "Oldest regular. She worries about him more than she says." },
+    { "to": "odile", "bond": 0.1, "trust": 0.4, "note": "Mayor drinks here and talks too much. Useful. Not a friend." },
+    { "to": "sable", "bond": 0.3, "trust": 0.4, "note": "Charming lodger, pays late, sells things Mara has not asked about." },
+    { "to": "arlo", "bond": 0.0, "trust": 0.3, "note": "The stranger upstairs. Polite, tidy, says nothing. She is watching." },
+    { "to": "nell", "bond": 0.6, "trust": 0.8, "note": "Taught her to read at the bar after hours. Still comes in for a half on Fridays." },
+    { "to": "wren", "bond": 0.5, "trust": 0.7, "note": "Runs messages for the inn. Mara pretends not to notice the packed bag." },
+    { "to": "cas", "bond": 0.4, "trust": 0.6, "note": "Brings the bread at seven. Anxious boy, good heart." }
+  ],
+  "routine": [
+    { "start": "06:00", "end": "07:00", "place": "lantern", "activity": "laying the fire and opening up" },
+    { "start": "07:00", "end": "12:00", "place": "lantern", "activity": "serving breakfast and hearing the morning's news" },
+    { "start": "12:00", "end": "13:00", "place": "lantern", "activity": "eating lunch at the end of the bar" },
+    { "start": "13:00", "end": "15:00", "place": "square", "activity": "doing the rounds of the square and the market" },
+    { "start": "15:00", "end": "23:30", "place": "lantern", "activity": "working the bar" },
+    { "start": "23:30", "end": "06:00", "place": "lantern-rooms", "activity": "sleeping" }
+  ]
+}
