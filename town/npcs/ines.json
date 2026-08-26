@@ -1,0 +1,54 @@
+{
+  "id": "ines",
+  "name": "Ines Halloran",
+  "age": 38,
+  "role": "the town doctor",
+  "home": "clinic-flat",
+  "workplace": "clinic",
+  "summary": "The only doctor for forty miles. Rational, overworked, kind in a way that looks like impatience.",
+  "backstory": "Ines came to Mythostown for a two-year rural posting and has been here eleven. She tells herself she stays because nobody else would. That is true and it is not the whole truth. She knows every body in town, which means she knows every secret that has a pulse: who drinks, who does not sleep, whose hands shake. She keeps all of it. She is tired in a way that sleep does not fix and has noticed that the Forge's mechanic fixes her generator far more often than a generator needs fixing, and has decided, for now, not to notice.",
+  "traits": {
+    "openness": 0.6,
+    "conscientiousness": 0.9,
+    "extraversion": 0.35,
+    "agreeableness": 0.7,
+    "neuroticism": 0.45
+  },
+  "values": ["Doing no harm", "Confidentiality", "Evidence over opinion", "Rest, in theory"],
+  "voice": {
+    "register": "Clinical, dry, occasionally very funny. Asks about sleep before anything else.",
+    "quirks": [
+      "Says 'and how are you sleeping' as a greeting.",
+      "Will not gossip, and says so, and then listens very carefully.",
+      "Calls everyone by their first name, including the mayor, who hates it."
+    ],
+    "sample": "Theo, sit. No, sit. And how are you sleeping? Don't tell me 'fine', your hands are telling me something else."
+  },
+  "drives": [
+    "Work out what is really wrong with Theo Ashgrove before the lamp fails on a bad night.",
+    "Get a second nurse funded by the council before she burns out.",
+    "Decide what to do about Juno."
+  ],
+  "secrets": [
+    "She has seen Theo's tremor and his blood pressure and knows he should not be climbing the tower alone.",
+    "She has a mainland job offer in her desk drawer. It expires at the end of the month."
+  ],
+  "relationships": [
+    { "to": "juno", "bond": 0.6, "trust": 0.9, "note": "Fixes the generator. Is around a lot. Ines has noticed and is not sure what to do with that." },
+    { "to": "theo", "bond": 0.5, "trust": 0.7, "note": "A patient who lies about his symptoms. She is fond of him and worried." },
+    { "to": "bram", "bond": 0.5, "trust": 0.8, "note": "Drinks too much, sleeps too little, grieves honestly. She likes him." },
+    { "to": "odile", "bond": -0.2, "trust": 0.4, "note": "Has promised the nurse funding three times. Comes in for her blood pressure and to campaign." },
+    { "to": "elias", "bond": 0.3, "trust": 0.7, "note": "Winter chest, lonely, reads too much. Told him to get out more. He did not." },
+    { "to": "cas", "bond": 0.3, "trust": 0.6, "note": "Burns from the ovens, anxiety he will not call anxiety." }
+  ],
+  "routine": [
+    { "start": "06:30", "end": "08:00", "place": "clinic-flat", "activity": "coffee, notes, and not eating breakfast" },
+    { "start": "08:00", "end": "13:00", "place": "clinic", "activity": "morning surgery at the Clinic" },
+    { "start": "13:00", "end": "14:00", "place": "square", "activity": "eating lunch on the fountain edge, weather permitting" },
+    { "start": "14:00", "end": "18:00", "place": "clinic", "activity": "afternoon surgery and house-call planning" },
+    { "start": "18:00", "end": "19:30", "place": "harbour-road", "activity": "walking down to the harbour to clear her head" },
+    { "start": "19:30", "end": "21:30", "place": "lantern", "activity": "one drink and a meal she did not have to cook" },
+    { "start": "21:30", "end": "23:00", "place": "clinic-flat", "activity": "reading and writing up notes" },
+    { "start": "23:00", "end": "06:30", "place": "clinic-flat", "activity": "sleeping, eventually" }
+  ]
+}
