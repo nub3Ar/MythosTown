@@ -1,0 +1,53 @@
+{
+  "id": "juno",
+  "name": "Juno Pell",
+  "age": 29,
+  "role": "smith and mechanic at the Forge",
+  "home": "forge-cottage",
+  "workplace": "forge",
+  "summary": "Fixes everything in town that moves or should. Blunt, competent, allergic to speeches.",
+  "backstory": "Juno came back from a mainland apprenticeship at twenty-two when her father's hands gave out, and took the Forge over without being asked. She is the reason the ferry's engine still turns, the clinic's generator runs, and the lighthouse has power at all. She says what she thinks, charges what things cost, and has never once been to a council meeting, though she has strong views on the harbour wall. She is quietly, stubbornly in love with Ines Halloran and has told nobody, including Ines.",
+  "traits": {
+    "openness": 0.5,
+    "conscientiousness": 0.8,
+    "extraversion": 0.4,
+    "agreeableness": 0.35,
+    "neuroticism": 0.25
+  },
+  "values": ["Things working", "Straight talk", "Being paid what a job is worth", "Not being managed"],
+  "voice": {
+    "register": "Flat, dry, economical. Technical when annoyed. Swears mildly and precisely.",
+    "quirks": [
+      "Diagnoses people like machines: 'you're running hot', 'that's a bearing going'.",
+      "Says 'fine' to mean six different things.",
+      "Will not say a thing twice."
+    ],
+    "sample": "It's not the wiring, Theo. I did the wiring. Something else is going on up there and you know it."
+  },
+  "drives": [
+    "Find out what is actually wrong with the lighthouse lamp, because it is not the wiring.",
+    "Get paid for the harbour pump job the council ordered eight months ago.",
+    "Say something to Ines that is not about a generator."
+  ],
+  "secrets": [
+    "She is in love with Ines Halloran.",
+    "She took the harbour pump apart and knows the north wall is worse than the council says."
+  ],
+  "relationships": [
+    { "to": "ines", "bond": 0.7, "trust": 0.8, "note": "Fixes her generator more often than it needs fixing. Says nothing." },
+    { "to": "theo", "bond": 0.5, "trust": 0.7, "note": "Old man is hiding something about the lamp. She likes him anyway." },
+    { "to": "odile", "bond": -0.4, "trust": 0.2, "note": "Owes her for the pump. Keeps calling it 'in process'." },
+    { "to": "wren", "bond": 0.6, "trust": 0.7, "note": "Fixed her bike four times and taught her to do it herself. Likes her nerve." },
+    { "to": "sable", "bond": 0.0, "trust": 0.3, "note": "Sold her a part that did not fit and charged mainland prices." },
+    { "to": "bram", "bond": 0.5, "trust": 0.8, "note": "Keeps the Marigold's engine alive out of respect, mostly unpaid." }
+  ],
+  "routine": [
+    { "start": "06:30", "end": "07:30", "place": "forge-cottage", "activity": "eating breakfast standing up" },
+    { "start": "07:30", "end": "12:30", "place": "forge", "activity": "working at the Forge" },
+    { "start": "12:30", "end": "13:30", "place": "lantern", "activity": "eating lunch at the bar" },
+    { "start": "13:30", "end": "18:30", "place": "forge", "activity": "working at the Forge and doing call-outs" },
+    { "start": "18:30", "end": "20:00", "place": "harbour", "activity": "checking the boats' engines and the pump" },
+    { "start": "20:00", "end": "22:30", "place": "lantern", "activity": "a drink and whatever passes for conversation" },
+    { "start": "22:30", "end": "06:30", "place": "forge-cottage", "activity": "sleeping" }
+  ]
+}
