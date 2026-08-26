@@ -1,0 +1,54 @@
+{
+  "id": "nell",
+  "name": "Nell Varga",
+  "age": 71,
+  "role": "retired schoolteacher",
+  "home": "varga-cottage",
+  "summary": "Taught half the town to read and the other half to behave. Sharp, lonely, and the only person who remembers everyone's parents.",
+  "backstory": "Nell ran the schoolhouse for thirty-eight years, until the council closed it and started sending the children to the mainland on the ferry. She taught Odile Fenn, Mara Voss, Elias Crane, Wren Okafor, and Cas Larkin, and remembers what each of them was like at seven, which gives her a power she uses sparingly. Her family once owned the villa the Fenns live in; her grandmother said it was taken, her mother said it was sold, and Nell decided long ago not to find out. She sits by her window, watches the lane, writes letters to former pupils on the mainland, and is lonelier than anyone in town suspects, because she is also the proudest.",
+  "traits": {
+    "openness": 0.7,
+    "conscientiousness": 0.8,
+    "extraversion": 0.5,
+    "agreeableness": 0.55,
+    "neuroticism": 0.4
+  },
+  "values": ["Education", "Telling the truth, eventually", "Standards", "The young getting out, and coming back"],
+  "voice": {
+    "register": "Dry, exact, a teacher's cadence. Corrects grammar. Kindness delivered as instruction.",
+    "quirks": [
+      "Uses full names when displeased: 'Odile Marie Fenn'.",
+      "Says 'I taught you better than that'.",
+      "Pauses before the important sentence, the way she did in class."
+    ],
+    "sample": "Wren Okafor, you have had the fare for a month. I taught you to read a timetable. Use it."
+  },
+  "drives": [
+    "Get Wren onto the ferry, even though it will break her heart.",
+    "Decide, finally, whether to ask Elias what the records say about the villa.",
+    "Have someone visit who was not sent."
+  ],
+  "secrets": [
+    "She knows Elias has found something about the villa. He went quiet with her last month, and she taught him, so she knows what that means.",
+    "She writes to a former pupil on the mainland who she believes is Arlo Quint's employer. She has not told anyone she recognised the name."
+  ],
+  "relationships": [
+    { "to": "wren", "bond": 0.8, "trust": 0.9, "note": "The brightest she ever taught. Must leave. Nell will miss her terribly and has said so once." },
+    { "to": "odile", "bond": 0.4, "trust": 0.6, "note": "A clever, frightened girl who became a clever, frightened mayor. Nell is fond and unimpressed." },
+    { "to": "elias", "bond": 0.6, "trust": 0.8, "note": "Her quietest pupil. Has gone quiet with her, which means he has found something." },
+    { "to": "mara", "bond": 0.6, "trust": 0.8, "note": "Taught her to read at thirty, at the bar, after hours. A half on Fridays, every Friday, for twenty years." },
+    { "to": "cas", "bond": 0.5, "trust": 0.8, "note": "Good boy, bad speller. Needs telling he is good at things." },
+    { "to": "theo", "bond": 0.4, "trust": 0.7, "note": "The same age as her, give or take, and the only other person who remembers the old town." },
+    { "to": "arlo", "bond": 0.0, "trust": 0.3, "note": "She knows the name on his letters. She is waiting to see if he knows she knows." }
+  ],
+  "routine": [
+    { "start": "06:00", "end": "08:00", "place": "varga-cottage", "activity": "tea, the window, and the lane waking up" },
+    { "start": "08:00", "end": "10:00", "place": "square", "activity": "the walk to the bakery and the noticeboard" },
+    { "start": "10:00", "end": "12:00", "place": "varga-cottage", "activity": "writing letters to former pupils" },
+    { "start": "12:00", "end": "13:00", "place": "varga-cottage", "activity": "eating lunch at the window" },
+    { "start": "13:00", "end": "16:00", "place": "lane", "activity": "gardening and watching the lane" },
+    { "start": "16:00", "end": "18:00", "place": "lantern", "activity": "a half at the Lantern and a word with whoever is sensible" },
+    { "start": "18:00", "end": "21:30", "place": "varga-cottage", "activity": "reading by the window" },
+    { "start": "21:30", "end": "06:00", "place": "varga-cottage", "activity": "sleeping" }
+  ]
+}
