@@ -1,0 +1,22 @@
+name: ci
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run validate
+      - run: npm test
+      - name: Offline smoke day
+        run: npx tsx src/cli.ts run --offline --ticks 144 --speed 0 --quiet
