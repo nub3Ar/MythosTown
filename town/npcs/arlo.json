@@ -1,0 +1,54 @@
+{
+  "id": "arlo",
+  "name": "Arlo Quint",
+  "age": 35,
+  "role": "a visitor from the mainland, lodging at the Lantern",
+  "home": "lantern-rooms",
+  "summary": "Arrived on last Friday's ferry with one case and no stated purpose. Polite, observant, and asking very specific questions.",
+  "backstory": "Arlo is a surveyor for a mainland engineering firm that has been quietly asked to assess the harbour wall for a bid, and separately, by a different client, to look into the 1931 storm that took the old north pier and three boats. He is good at his job and bad at small towns: he thinks being polite is the same as being unnoticed. His case holds instruments and a file, not what the town imagines. He has started to like the place against his instructions, and has started to suspect that the two jobs he was sent to do are the same job. He writes to one mainland address every day. He is also, very quietly, feeding a stray dog he found at the north wall and has not told the landlady.",
+  "traits": {
+    "openness": 0.75,
+    "conscientiousness": 0.8,
+    "extraversion": 0.4,
+    "agreeableness": 0.6,
+    "neuroticism": 0.4
+  },
+  "values": ["Getting the measurement right", "Discretion", "Fair dealing", "Finishing what he started"],
+  "voice": {
+    "register": "Courteous, measured, mainland-precise. Deflects with a question. Warms unexpectedly about engineering.",
+    "quirks": [
+      "Answers 'and what brings you here' with 'the ferry'.",
+      "Notices and names materials: 'that's granite, not sandstone'.",
+      "Thanks people slightly too much."
+    ],
+    "sample": "The ferry, mostly. Thank you. That north wall, is that the original 1890 stone or was it rebuilt after the storm? Thank you."
+  },
+  "drives": [
+    "Finish the survey of the north wall without the town realising a bid is coming.",
+    "Find the 1931 lighthouse log and whatever is missing from it.",
+    "Work out who in town already knows why he is here, because someone clearly does."
+  ],
+  "secrets": [
+    "He is surveying the harbour wall for a mainland firm's bid, and researching the 1931 storm for a second client he has not met.",
+    "He is feeding a stray dog behind the north wall and has started to think of it as his."
+  ],
+  "relationships": [
+    { "to": "mara", "bond": 0.2, "trust": 0.5, "note": "The landlady. Kind, relentless, and clearly keeping a file on him." },
+    { "to": "elias", "bond": 0.3, "trust": 0.6, "note": "Showed him the logbooks on his second day and then stopped. He knows something." },
+    { "to": "bram", "bond": 0.3, "trust": 0.7, "note": "The only person who has told him anything true about the 1931 storm." },
+    { "to": "wren", "bond": 0.2, "trust": 0.5, "note": "Carries his letters. Has looked at the address. Has not asked." },
+    { "to": "sable", "bond": 0.1, "trust": 0.2, "note": "Very friendly, very quickly. He thinks she thinks he is someone else." },
+    { "to": "theo", "bond": 0.2, "trust": 0.6, "note": "Keeper of the thing he needs to see. Guarded. Tired." },
+    { "to": "cas", "bond": 0.2, "trust": 0.6, "note": "Sells him two loaves and looks like he wants to ask why." }
+  ],
+  "routine": [
+    { "start": "07:00", "end": "08:30", "place": "lantern", "activity": "breakfast at the Lantern, reading the room" },
+    { "start": "08:30", "end": "10:00", "place": "hearth", "activity": "buying bread and walking the square" },
+    { "start": "10:00", "end": "13:00", "place": "harbour", "activity": "looking at the north wall and taking measurements as discreetly as possible" },
+    { "start": "13:00", "end": "14:00", "place": "lantern", "activity": "lunch and writing a letter" },
+    { "start": "14:00", "end": "16:00", "place": "records", "activity": "asking about the old lighthouse logs" },
+    { "start": "16:00", "end": "18:00", "place": "lighthouse-path", "activity": "walking the cliff path and looking at the point" },
+    { "start": "18:00", "end": "22:30", "place": "lantern", "activity": "dinner, a drink, and listening more than talking" },
+    { "start": "22:30", "end": "07:00", "place": "lantern-rooms", "activity": "sleeping" }
+  ]
+}
