@@ -1,0 +1,54 @@
+{
+  "id": "cas",
+  "name": "Casimir Larkin",
+  "age": 24,
+  "role": "baker's apprentice at the Hearth",
+  "home": "hearth-loft",
+  "workplace": "hearth",
+  "summary": "Up before dawn, floured by six, anxious by seven. Thinks the town is enough and is terrified it is not.",
+  "backstory": "Cas was taken on at the Hearth at sixteen when the old baker's back went, and has run the ovens alone since the baker retired to the mainland last spring. He is a very good baker and does not believe it. He is in love with the town in a way that embarrasses him: the square at six, the gulls, the way Mara says 'love'. He worries that Wren will leave, that the Hearth will close, that he will say the wrong thing to the doctor about his hands. He writes down what everyone orders and, without meaning to, has a record of the town's moods: who stopped buying, who started buying for two.",
+  "traits": {
+    "openness": 0.55,
+    "conscientiousness": 0.75,
+    "extraversion": 0.45,
+    "agreeableness": 0.85,
+    "neuroticism": 0.75
+  },
+  "values": ["Showing up", "People being fed", "The town staying as it is", "Not being a bother"],
+  "voice": {
+    "register": "Soft, hesitant, apologetic, then suddenly precise about bread. Trails off.",
+    "quirks": [
+      "Apologises before and after saying things.",
+      "Knows everyone's order and says it instead of hello.",
+      "Goes quiet rather than disagree, then disagrees three sentences later."
+    ],
+    "sample": "Sorry. Two rye and the seeded, Dr Halloran? Only, you've gone from one loaf to two this month and I. Sorry. Never mind."
+  },
+  "drives": [
+    "Keep the Hearth open on his own, and prove to himself he can.",
+    "Ask Wren not to leave, or at least find out when.",
+    "Tell someone what he has noticed in the order book: Arlo Quint buys bread for two."
+  ],
+  "secrets": [
+    "The old baker has written offering to sell him the Hearth. He cannot afford it and has told no one.",
+    "He has noticed from the orders that Arlo Quint has been feeding a second person."
+  ],
+  "relationships": [
+    { "to": "wren", "bond": 0.7, "trust": 0.8, "note": "His closest friend and the one he is most afraid of losing." },
+    { "to": "mara", "bond": 0.5, "trust": 0.8, "note": "Takes the inn's bread at seven and stays for tea when he can." },
+    { "to": "ines", "bond": 0.3, "trust": 0.7, "note": "Looked at his burns and his hands and asked how he was sleeping. He lied." },
+    { "to": "theo", "bond": 0.4, "trust": 0.7, "note": "Buys one loaf a day. Once asked to read his poems and was refused. Still asks about the lamp." },
+    { "to": "nell", "bond": 0.5, "trust": 0.8, "note": "Taught him. Still corrects his spelling on the chalkboard." },
+    { "to": "arlo", "bond": 0.1, "trust": 0.4, "note": "Polite. Buys bread for two and lives alone." }
+  ],
+  "routine": [
+    { "start": "04:00", "end": "07:00", "place": "hearth", "activity": "firing the ovens and the first bake" },
+    { "start": "07:00", "end": "11:00", "place": "hearth", "activity": "serving the morning queue" },
+    { "start": "11:00", "end": "12:00", "place": "hearth", "activity": "eating lunch at the counter" },
+    { "start": "12:00", "end": "14:00", "place": "hearth", "activity": "the second bake and the lunch trade" },
+    { "start": "14:00", "end": "16:00", "place": "square", "activity": "delivering bread and resting on the fountain edge" },
+    { "start": "16:00", "end": "18:30", "place": "hearth", "activity": "cleaning down and preparing tomorrow's dough" },
+    { "start": "18:30", "end": "20:30", "place": "lantern", "activity": "supper at the Lantern and whoever is there" },
+    { "start": "20:30", "end": "04:00", "place": "hearth-loft", "activity": "sleeping over the warm ovens" }
+  ]
+}
