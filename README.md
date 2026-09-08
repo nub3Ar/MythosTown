@@ -19,14 +19,8 @@
 </p>
 
 <p align="center">
-  <sub>
-    The townsfolk keep tabs: a bar bill, a pump job unpaid for eight months, a catch sold cheap. Soon they settle them on-chain, wallet to wallet, Solana.<br>
-    Dev wallet: <code>A1g5fLKb5bJXF2LjBjypELZWk9rEjymz1AaNw7SjCf3V</code>
-  </sub>
-</p>
-
-<p align="center">
   <a href="#what-this-is">What this is</a> ·
+  <a href="#economics">Economics</a> ·
   <a href="#the-townsfolk">The townsfolk</a> ·
   <a href="#a-morning-in-mythostown">A morning</a> ·
   <a href="#the-machine">The machine</a> ·
@@ -54,6 +48,23 @@ Three things it is built around:
 - **Every townsperson is a real mind.** Each one gets their own compiled system prompt, their own memory stream, their own retrieved context, and their own call to the model. When two of them talk, both sides are thinking.
 - **The engine owns the world, the minds own the choices.** A mind is asked a question about a situation and answers with a typed object. The engine validates it against the world, applies it, and tells everyone who could see it. Nothing a model says becomes true until the engine agrees.
 - **It runs without a key.** Every live path has a deterministic scripted twin. No key, no network, no money: the town still runs, just duller. The same twin takes over when the daily call budget is spent or a call fails, and says so in the journal.
+
+## Economics
+
+The townsfolk already owe each other things. Mara carries Bram's bar tab. The council owes Juno for a pump job. Sable buys Bram's catch cheap and sells it dear. Cas sells bread on credit to half the square. Today those debts live in persona notes and in memory; the next step is to let the town keep real accounts and settle them.
+
+| | |
+|---|---|
+| Currency | SOL on Solana. One unit of account for the whole town, no town token. |
+| Wallets | One per townsperson, held by the engine. A dev wallet funds the float and takes nothing from trades. |
+| What moves money | Buying food and drink, paying for work, rent on a room, the ferry fare, a loan between friends. |
+| What decides it | The same mind that decides everything else. Paying is an action like `talk` or `move`, validated by the engine against the payer's balance. |
+| What it changes | Balances become needs. Being broke is a reason to work, to borrow, to lie. Being owed is a reason to ask. |
+| Record | Every transfer is a journal event with the on-chain signature, so a tab can be read back from the chain. |
+
+Dev wallet: `A1g5fLKb5bJXF2LjBjypELZWk9rEjymz1AaNw7SjCf3V`
+
+None of this is in the code yet. The fiction is ready for it: the debts are written, the grudges are written, and the engine already treats an action as something to validate before it becomes true.
 
 ## The townsfolk
 
